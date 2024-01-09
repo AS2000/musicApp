@@ -9,7 +9,8 @@ object Dependencies {
 
     // Gradle
     private const val androidBuildToolsVersion = "7.2.1"
-    const val androidBuildToolsGradlePlugin = "com.android.tools.build:gradle:$androidBuildToolsVersion"
+    const val androidBuildToolsGradlePlugin =
+        "com.android.tools.build:gradle:$androidBuildToolsVersion"
     private const val kotlinGradleVersion = "1.7.21"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinGradleVersion"
 
@@ -27,11 +28,13 @@ object Dependencies {
     // Activity / Fragment Kotlin Extensions
     private const val androidxActivityVersion = "1.6.1"
     const val androidxActivityKtx = "androidx.activity:activity-ktx:$androidxActivityVersion"
-    // is not needed to import activity-ktx separatly as it is the part of fragment-ktx
+
+    // is not needed to import activity-ktx separately as it is the part of fragment-ktx
     private const val androidxFragmentVersion = "1.6.0"
     const val androidxFragmentKtx = "androidx.fragment:fragment-ktx:$androidxFragmentVersion"
-    // fragment-ktx includes: activity-ktx, core-ktx, collection-ktx, fragment, lifecycle-livedata-core-ktx,
-    // lifecycle-viewmodel-ktx, savedstate-ktx, kotlin-stdlib
+
+    /** fragment-ktx includes: activity-ktx, core-ktx, collection-ktx, fragment, lifecycle-livedata-core-ktx,
+     lifecycle-viewmodel-ktx, savedstate-ktx, kotlin-stdlib */
     const val androidxFragmentTesting =
         "androidx.fragment:fragment-testing:$androidxFragmentVersion"
 
@@ -100,7 +103,7 @@ object Dependencies {
         "com.github.Zhuinden:fragmentviewbindingdelegate-kt:$fragmentViewBindingVersion"
 
     // Hilt / Dagger2
-    private const val hiltVersion = "2.45"
+    private const val hiltVersion = "2.50"
     const val hilt = "com.google.dagger:hilt-android:$hiltVersion"
     const val hiltCompiler = "com.google.dagger:hilt-compiler:$hiltVersion"
     const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"

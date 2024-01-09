@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 import lt.vianet.musicapp.modules.features.music.R
 import lt.vianet.musicapp.modules.features.music.databinding.FragmentMusicBinding
 
+@AndroidEntryPoint
 class MusicFragment : Fragment(R.layout.fragment_music) {
     private val viewBinding: FragmentMusicBinding by viewBinding(FragmentMusicBinding::bind)
 

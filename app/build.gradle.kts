@@ -21,6 +21,12 @@ android {
         testInstrumentationRunner = ConfigAndroid.testInstrumentationRunner
 
         manifestPlaceholders["applicationLabel"] = ConfigAndroid.applicationName
+
+        buildConfigField(
+            "String",
+            "URL_API",
+            "\"https://music-app-mock.vianet.lt\"",
+        )
     }
     buildTypes {
         release {

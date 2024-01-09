@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Navigation Graph -->
+    <string name="navigation.graph.title.music">Music</string>
+    <string name="navigation.graph.title.playlist">Playlist</string>
+
+    <!-- Screen -->
+    <string name="screen.title.music">Music</string>
+    <string name="screen.title.playlist">Playlist</string>
+</resources>

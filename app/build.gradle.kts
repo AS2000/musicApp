@@ -35,12 +35,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlin {
-        jvmToolchain(8)
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
-//    kotlinOptions {
-//        jvmTarget = JavaVersion.VERSION_1_8.toString()
-//    }
     buildFeatures {
         viewBinding = true
         buildConfig = true

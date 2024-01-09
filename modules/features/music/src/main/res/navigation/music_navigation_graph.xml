@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/music_navigation_graph"
+    app:startDestination="@id/musicFragment">
+
+    <fragment
+        android:id="@+id/musicFragment"
+        android:name="lt.vianet.musicapp.modules.features.music.ui.fragment.MusicFragment"
+        android:label="@string/navigation.graph.title.music"
+        tools:layout="@layout/fragment_music" />
+</navigation>

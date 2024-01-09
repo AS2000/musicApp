@@ -18,7 +18,10 @@ android {
 
 dependencies {
     // Modules
+    implementation(project(Modules.common))
     implementation(project(Modules.Data.model))
+    implementation(project(Modules.Data.repository))
+    implementation(project(Modules.Data.storage))
 
     // Androidx
     implementation(Dependencies.androidxCoreKtx)
@@ -28,41 +31,22 @@ dependencies {
     implementation(Dependencies.material)
     implementation(Dependencies.androidxConstraintLayout)
 
+    // Activity / Fragment Kotlin Extensions
+    implementation(Dependencies.androidxFragmentKtx)
+    implementation(Dependencies.androidxFragmentTesting)
+
+    // Fragment view binding helper
+    implementation(Dependencies.fragmentViewBinding)
+
+    // Swipe Refresh
+    implementation(Dependencies.androidxSwipeRefreshLayout)
+
     // Navigation
     implementation(Dependencies.androidxNavigationFragment)
     implementation(Dependencies.androidxNavigationUI)
     implementation(Dependencies.androidxNavigationTesting)
 
-    // Fragment Kotlin Extensions
-    implementation(Dependencies.androidxFragmentKtx)
-    implementation(Dependencies.androidxFragmentTesting)
-
-    // Lifecycle
-    implementation(Dependencies.androidxLifecycleViewModel)
-    implementation(Dependencies.androidxLifecycleLiveData)
-    implementation(Dependencies.androidxLifecycleCommonJava)
-
-    // Kotlin Coroutines
-    implementation(Dependencies.kotlinxCoroutines)
-
-    // Swipe Refresh
-    implementation(Dependencies.androidxSwipeRefreshLayout)
-
-    // Kotlin Coroutines
-    implementation(Dependencies.kotlinxCoroutines)
-
-    // Retrofit (Network)
-    implementation(Dependencies.retrofit)
-    implementation(Dependencies.retrofitMoshi)
-
     // Hilt / Dagger
     implementation(Dependencies.hilt)
     kapt(Dependencies.hiltCompiler)
-
-    // Glide
-    implementation(Dependencies.glide)
-    kapt(Dependencies.glideAnnotationProcessor)
-
-    // Tests
-    testImplementation(Dependencies.kotlinTest)
 }

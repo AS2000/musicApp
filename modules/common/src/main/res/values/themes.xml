@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Custom Button Style - Blue -->
+    <style name="BlueButtonTheme" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@drawable/button_background_selector_blue</item>
+        <item name="android:textColor">@drawable/button_background_selector_blue</item>
+        <item name="materialThemeOverlay">@style/BlueButtonThemeOverlay</item>
+    </style>
+
+    <style name="BlueButtonThemeOverlay">
+        <item name="colorPrimary">@color/buttonBlueBackgroundGradientStart</item>
+    </style>
+
+    <style name="roundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10%</item>
+    </style>
+</resources>

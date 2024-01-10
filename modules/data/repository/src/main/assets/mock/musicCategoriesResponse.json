@@ -1,0 +1,65 @@
+{
+  "data": {
+    "music_categories": [
+      {
+        "id": "20000",
+        "category_type": "rock",
+        "music_items": [
+          {
+            "id": "10000",
+            "performer": "John Bon Jovi",
+            "title": "It's my life",
+            "weight": 18,
+            "length": 260,
+            "imageUrl": null
+          },
+          {
+            "id": "10001",
+            "performer": "John Bon Jovi",
+            "title": "Queen of New Orleans",
+            "weight": 18,
+            "length": 272,
+            "imageUrl": null
+          },
+          {
+            "id": "10002",
+            "performer": "John Bon Jovi",
+            "title": "Everybody Hurts",
+            "weight": 25,
+            "length": 296,
+            "imageUrl": null
+          }
+        ]
+      },
+      {
+        "id": "20001",
+        "category_type": "blues",
+        "music_items": [
+          {
+            "id": "11000",
+            "performer": "Eric Clapton",
+            "title": "Layla",
+            "weight": 20,
+            "length": 277,
+            "imageUrl": null
+          }
+        ]
+      },
+      {
+        "id": "20002",
+        "category_type": "jazz",
+        "music_items": [
+          {
+            "id": "11000",
+            "performer": "Louis Armstrong",
+            "title": "It's Been a Long, Long Time",
+            "weight": 11,
+            "length": 204,
+            "imageUrl": null
+          }
+        ]
+      }
+    ]
+  },
+  "error_data": null
+}

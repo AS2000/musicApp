@@ -1,0 +1,15 @@
+{
+  "data": {
+    "music_items": [
+      {
+        "id": "10000",
+        "performer": "John Bon Jovi",
+        "title": "It's my life",
+        "weight": 10,
+        "length": 160,
+        "imageUrl": null
+      }
+    ]
+  },
+  "error_data": null
+}

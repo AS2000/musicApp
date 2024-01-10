@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFFFF</color>
+    <color name="grey">#A8A8A8</color>
+
+    <!-- Buttons -->
+    <color name="disabledButtonText">#808080</color>
+    <color name="buttonBlueBackgroundGradientStart">#2684B7</color>
+    <color name="buttonBlueBackgroundGradientEnd">#294BB2</color>
+</resources>

@@ -3,15 +3,15 @@ package lt.vianet.musicapp.modules.data.model.music.response
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import lt.vianet.musicapp.modules.data.model.errorData.ErrorData
-import lt.vianet.musicapp.modules.data.model.music.Music
+import lt.vianet.musicapp.modules.data.model.music.MusicItem
 
 @JsonClass(generateAdapter = true)
-data class MusicResponse(
-    @field:Json(name = "data") val data: MusicData? = null,
+data class MusicItemsResponse(
+    @field:Json(name = "data") val data: MusicItemsData? = null,
     @field:Json(name = "error_data") val errorData: ErrorData? = null,
 )
 
 @JsonClass(generateAdapter = true)
-data class MusicData(
-    @field:Json(name = "community") val community: Music? = null,
+data class MusicItemsData(
+    @field:Json(name = "music_items") val musicItems: List<MusicItem>? = null,
 )

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/viewMusicItemImage"
+        android:layout_width="@dimen/size_200"
+        android:layout_height="@dimen/size_200"
+        android:layout_margin="@dimen/space_4"
+        android:padding="@dimen/space_8"
+        android:src="@drawable/ic_no_image_24"
+        app:contentPadding="@dimen/space_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/roundedImageView"
+        app:strokeColor="@color/grey"
+        app:strokeWidth="@dimen/size_2"
+        app:tint="@color/grey" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/viewMusicItemPerformer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingTop="@dimen/space_10"
+        android:textSize="@dimen/text_18"
+        android:textStyle="normal"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewMusicItemImage"
+        tools:text="John Bon Jovi" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/viewMusicItemMelodyTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingTop="@dimen/space_10"
+        android:textSize="@dimen/text_18"
+        android:textStyle="normal"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewMusicItemPerformer"
+        tools:text="It's my life" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/viewMusicItemWeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingTop="@dimen/space_10"
+        android:textSize="@dimen/text_18"
+        android:textStyle="normal"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@id/viewMusicItemLength"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewMusicItemMelodyTitle"
+        tools:text="10MB" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/viewMusicItemLength"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingTop="@dimen/space_10"
+        android:textSize="@dimen/text_18"
+        android:textStyle="normal"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@id/viewMusicItemWeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/viewMusicItemWeight"
+        tools:text="2m 40s" />
+</androidx.constraintlayout.widget.ConstraintLayout>

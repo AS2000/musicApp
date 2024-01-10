@@ -13,7 +13,8 @@
 
     <dimen name="size_2">2dp</dimen>
     <dimen name="size_48">48dp</dimen>
-    <dimen name="size_200">200dp</dimen>
+    <dimen name="size_120">120dp</dimen>
+    <dimen name="size_160">160dp</dimen>
 
     <!-- Common -->
     <dimen name="button_background_radius">10dp</dimen>

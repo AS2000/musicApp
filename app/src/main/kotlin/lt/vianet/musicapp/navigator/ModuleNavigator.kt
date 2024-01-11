@@ -2,8 +2,10 @@ package lt.vianet.musicapp.navigator
 
 import android.os.Bundle
 import androidx.navigation.NavController
+import lt.vianet.musicapp.modules.common.constant.Navigation.CATEGORY_TYPE
 import lt.vianet.musicapp.modules.common.constant.Navigation.SCREEN_TYPE
 import lt.vianet.musicapp.modules.common.navigator.ModuleNavigatorInterface
+import lt.vianet.musicapp.modules.data.model.enums.CategoryType
 import lt.vianet.musicapp.modules.data.model.enums.PlayListScreenType
 import javax.inject.Inject
 
@@ -15,9 +17,11 @@ class ModuleNavigator @Inject constructor() : ModuleNavigatorInterface {
     override fun navigateToPlaylist(
         navController: NavController,
         playListScreenType: PlayListScreenType,
+        categoryType: CategoryType?,
     ) {
         val bundle = Bundle()
         bundle.putSerializable(SCREEN_TYPE, playListScreenType)
+        bundle.putSerializable(CATEGORY_TYPE, categoryType)
         navController.navigate(
             lt.vianet.musicapp.modules.features.playlist.R.id.playlist_navigation_graph,
             bundle,

@@ -25,10 +25,22 @@ class MusicCategoryHorizontalScrollableView @JvmOverloads constructor(
             true,
         )
 
+    private lateinit var onSeeAllClicked: (categoryType: CategoryType) -> Unit
+    private lateinit var categoryType: CategoryType
+
     private val musicAdapter = MusicAdapter()
 
     init {
+        setupListeners()
         setupView()
+    }
+
+    private fun setupListeners() {
+        with(viewBinding) {
+            viewCategoryButtonSeeAll.setOnClickListener {
+                onSeeAllClicked(categoryType)
+            }
+        }
     }
 
     private fun setupView() {
@@ -43,11 +55,18 @@ class MusicCategoryHorizontalScrollableView @JvmOverloads constructor(
     fun setMusicCategory(musicCategory: MusicCategory) {
         musicAdapter.setItems(items = musicCategory.musicItems ?: emptyList())
 
-        musicCategory.categoryType?.let { setupCategoryTitle(categoryType = it) }
+        musicCategory.categoryType?.let {
+            this.categoryType = it
+            setupCategoryTitle(categoryType = it)
+        }
     }
 
     private fun setupCategoryTitle(categoryType: CategoryType) {
         viewBinding.viewCategoryCategoryTitle.text =
             getCategoryType(context = context, categoryType = categoryType)
+    }
+
+    fun setupOnSeeAllClicked(onSeeAllClicked: (categoryType: CategoryType) -> Unit) {
+        this.onSeeAllClicked = onSeeAllClicked
     }
 }

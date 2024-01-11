@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,7 +34,13 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
     private val viewBinding: FragmentMusicBinding by viewBinding(FragmentMusicBinding::bind)
     private val musicViewModel by viewModels<MusicViewModel>()
 
-    private val musicCategoriesAdapter = MusicCategoriesAdapter()
+    private val musicCategoriesAdapter = MusicCategoriesAdapter() { categoryType ->
+        moduleNavigator.navigateToPlaylist(
+            navController = findNavController(),
+            playListScreenType = PlayListScreenType.PLAYLIST,
+            categoryType = categoryType,
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -101,6 +108,7 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
                     moduleNavigator.navigateToPlaylist(
                         navController = findNavController(),
                         playListScreenType = PlayListScreenType.MEMORY,
+                        categoryType = null,
                     )
                 },
             )
@@ -110,6 +118,7 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
                     moduleNavigator.navigateToPlaylist(
                         navController = findNavController(),
                         playListScreenType = PlayListScreenType.FILE_SYSTEM,
+                        categoryType = null,
                     )
                 },
             )

@@ -27,14 +27,53 @@
             android:layout_marginStart="@dimen/space_10"
             android:ellipsize="end"
             android:maxLines="1"
-            android:paddingTop="@dimen/space_10"
+            android:paddingTop="@dimen/space_4"
             android:text="@string/music.screen.title.storage"
-            android:textSize="@dimen/text_24"
+            android:textSize="@dimen/text_22"
             android:textStyle="normal"
             app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/memoryUsageViewMemory"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Storage" />
+
+        <lt.vianet.musicapp.modules.common.view.MemoryUsageView
+            android:id="@+id/memoryUsageViewMemory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/dividerAfterMemory"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:muv_view_type="memory" />
+
+        <View
+            android:id="@+id/dividerAfterMemory"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/space_4"
+            android:background="@color/lightGrey"
+            app:layout_constraintBottom_toTopOf="@id/memoryUsageViewFileSystem"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <lt.vianet.musicapp.modules.common.view.MemoryUsageView
+            android:id="@+id/memoryUsageViewFileSystem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/dividerAfterFileSystem"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:muv_view_type="file_system" />
+
+        <View
+            android:id="@+id/dividerAfterFileSystem"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/space_4"
+            android:layout_marginBottom="@dimen/space_10"
+            android:background="@color/lightGrey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

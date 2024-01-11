@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/viewMemoryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="@dimen/text_18"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Memory" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/viewMemoryMelodyLength"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="@dimen/text_18"
+        android:textStyle="normal"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@id/viewMemoryTitle"
+        app:layout_constraintEnd_toStartOf="@id/viewMemoryIconRightArrow"
+        app:layout_constraintTop_toTopOf="@id/viewMemoryTitle"
+        tools:text="20m 39s" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/viewMemoryIconRightArrow"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/memory.usage.view.arrow.button.description"
+        android:padding="@dimen/space_8"
+        app:backgroundTint="@color/white"
+        app:icon="@drawable/ic_arrow_right_24"
+        app:iconSize="@dimen/view_memory_usage_icon_right_arrow_size"
+        app:iconTint="@color/lightGrey"
+        app:layout_constraintBottom_toBottomOf="@id/viewMemoryTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/viewMemoryTitle"
+        app:rippleColor="@color/buttonBlueBackgroundGradientStart" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@ import java.io.IOException
 
 object MusicItemsMockHelper {
     fun getMusicCategoriesMock(context: Context): MusicCategoriesResponse? {
-        var jsonString: String? = null
+        val jsonString: String?
 
         try {
             jsonString = context.assets.open("mock/musicCategoriesResponse.json")
@@ -25,7 +25,7 @@ object MusicItemsMockHelper {
     }
 
     fun getMusicItemsMock(context: Context): MusicItemsResponse? {
-        var jsonString: String? = null
+        val jsonString: String?
 
         try {
             jsonString = context.assets.open("mock/musicItemsResponse.json")

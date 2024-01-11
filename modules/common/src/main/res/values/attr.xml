@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MemoryUsageView">
+        <attr name="muv_view_type" format="enum">
+            <enum name="memory" value="0" />
+            <enum name="file_system" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>

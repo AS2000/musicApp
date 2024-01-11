@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
-import lt.vianet.musicapp.modules.common.helper.MusicCompositionHelper.getLengthAsString
-import lt.vianet.musicapp.modules.common.helper.MusicCompositionHelper.getWeightAsString
+import lt.vianet.musicapp.modules.common.helper.MusicCompositionHelper.getMelodyLengthAsString
+import lt.vianet.musicapp.modules.common.helper.MusicCompositionHelper.getMelodyWeightAsString
 import lt.vianet.musicapp.modules.data.model.music.MusicItem
 import lt.vienet.musicApp.modules.common.databinding.ViewMusicCompositionBinding
 
@@ -28,8 +28,8 @@ class MusicCompositionView @JvmOverloads constructor(
         with(viewBinding) {
             viewMusicItemPerformer.text = musicItem.performer ?: ""
             viewMusicItemMelodyTitle.text = musicItem.title ?: ""
-            viewMusicItemWeight.text = getWeightAsString(weight = musicItem.weight)
-            viewMusicItemLength.text = getLengthAsString(length = musicItem.length)
+            viewMusicItemWeight.text = getMelodyWeightAsString(weight = musicItem.weight)
+            viewMusicItemLength.text = getMelodyLengthAsString(length = musicItem.length)
         }
     }
 

@@ -86,5 +86,17 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
 
     private fun updateUI(musicCategories: List<MusicCategory>) {
         musicCategoriesAdapter.setItems(items = musicCategories)
+
+        // TODO refactor lines below
+        updateMemoryMelodyLength(melodyLength = 3601)
+        updateFileSystemMelodyLength(melodyLength = 360103)
+    }
+
+    private fun updateMemoryMelodyLength(melodyLength: Int = 0) {
+        viewBinding.memoryUsageViewMemory.setMelodyLength(melodyLength = melodyLength)
+    }
+
+    private fun updateFileSystemMelodyLength(melodyLength: Int = 0) {
+        viewBinding.memoryUsageViewFileSystem.setMelodyLength(melodyLength = melodyLength)
     }
 }

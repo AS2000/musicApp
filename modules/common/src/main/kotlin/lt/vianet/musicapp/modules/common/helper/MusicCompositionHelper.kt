@@ -4,12 +4,12 @@ private const val SECONDS_IN_MINUTE = 60
 private const val SECONDS_IN_HOUR = 3600
 
 object MusicCompositionHelper {
-    fun getWeightAsString(weight: Int?): String {
+    fun getMelodyWeightAsString(weight: Int?): String {
         weight ?: return ""
         return "${weight}M"
     }
 
-    fun getLengthAsString(length: Int?): String {
+    fun getMelodyLengthAsString(length: Int?): String {
         length ?: return ""
 
         val hours = if (length > SECONDS_IN_HOUR) length / SECONDS_IN_HOUR else 0

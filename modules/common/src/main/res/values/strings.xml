@@ -18,4 +18,9 @@
 
     <!-- Music Screen -->
     <string name="music.screen.title.storage">Storage</string>
+
+    <!-- Memory Usage View -->
+    <string name="memory.usage.view.memory">Memory</string>
+    <string name="memory.usage.view.file.system">File System</string>
+    <string name="memory.usage.view.arrow.button.description">Melody details</string>
 </resources>

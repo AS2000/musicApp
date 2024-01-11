@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="text_14">14sp</dimen>
+    <dimen name="text_16">16sp</dimen>
     <dimen name="text_18">18sp</dimen>
+    <dimen name="text_22">22sp</dimen>
     <dimen name="text_24">24sp</dimen>
     <dimen name="text_36">36sp</dimen>
 
@@ -9,6 +11,7 @@
     <dimen name="space_4">4dp</dimen>
     <dimen name="space_8">8dp</dimen>
     <dimen name="space_10">10dp</dimen>
+    <dimen name="space_14">14dp</dimen>
     <dimen name="space_20">20dp</dimen>
     <dimen name="space_40">40dp</dimen>
 
@@ -19,4 +22,7 @@
 
     <!-- Common -->
     <dimen name="button_background_radius">10dp</dimen>
+
+    <!-- View Memory Usage -->
+    <dimen name="view_memory_usage_icon_right_arrow_size">18dp</dimen>
 </resources>

@@ -15,4 +15,7 @@
     <string name="music.category.type.rock">Rock</string>
     <string name="music.category.type.blues">Blues</string>
     <string name="music.category.type.jazz">Jazz</string>
+
+    <!-- Music Screen -->
+    <string name="music.screen.title.storage">Storage</string>
 </resources>

@@ -40,10 +40,10 @@ class MusicCategoryHorizontalScrollableView @JvmOverloads constructor(
         }
     }
 
-    fun setCategory(category: MusicCategory) {
-        musicAdapter.setItems(items = category.musicItems ?: emptyList())
+    fun setMusicCategory(musicCategory: MusicCategory) {
+        musicAdapter.setItems(items = musicCategory.musicItems ?: emptyList())
 
-        category.categoryType?.let { setupCategoryTitle(categoryType = it) }
+        musicCategory.categoryType?.let { setupCategoryTitle(categoryType = it) }
     }
 
     private fun setupCategoryTitle(categoryType: CategoryType) {

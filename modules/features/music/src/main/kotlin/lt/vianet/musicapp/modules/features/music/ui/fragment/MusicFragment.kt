@@ -7,6 +7,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -15,12 +17,16 @@ import lt.vianet.musicapp.modules.data.model.music.MusicCategory
 import lt.vianet.musicapp.modules.features.music.R
 import lt.vianet.musicapp.modules.features.music.databinding.FragmentMusicBinding
 import lt.vianet.musicapp.modules.features.music.state.MusicItemsState
+import lt.vianet.musicapp.modules.features.music.ui.adapter.MusicCategoriesAdapter
 import lt.vianet.musicapp.modules.features.music.viewmodel.MusicViewModel
 
 @AndroidEntryPoint
 class MusicFragment : Fragment(R.layout.fragment_music) {
     private val viewBinding: FragmentMusicBinding by viewBinding(FragmentMusicBinding::bind)
     private val musicViewModel by viewModels<MusicViewModel>()
+
+    private val musicCategoriesAdapter = MusicCategoriesAdapter()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -65,11 +71,20 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
                     musicViewModel.getMusicCategories()
                 }
             }
+
+            with(recyclerViewMusicCategories) {
+                layoutManager = LinearLayoutManager(
+                    context,
+                    LinearLayoutManager.VERTICAL,
+                    false,
+                )
+                adapter = musicCategoriesAdapter
+                itemAnimator = DefaultItemAnimator()
+            }
         }
     }
 
-    // TODO refactor setupUI & updateUI
     private fun updateUI(musicCategories: List<MusicCategory>) {
-        viewBinding.scrollableViewMusicCategory.setCategory(category = musicCategories[0])
+        musicCategoriesAdapter.setItems(items = musicCategories)
     }
 }

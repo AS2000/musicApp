@@ -7,21 +7,29 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import lt.vianet.musicapp.modules.common.extension.onRefresh
+import lt.vianet.musicapp.modules.common.navigator.ModuleNavigatorInterface
+import lt.vianet.musicapp.modules.data.model.enums.PlayListScreenType
 import lt.vianet.musicapp.modules.data.model.music.MusicCategory
 import lt.vianet.musicapp.modules.features.music.R
 import lt.vianet.musicapp.modules.features.music.databinding.FragmentMusicBinding
 import lt.vianet.musicapp.modules.features.music.state.MusicItemsState
 import lt.vianet.musicapp.modules.features.music.ui.adapter.MusicCategoriesAdapter
 import lt.vianet.musicapp.modules.features.music.viewmodel.MusicViewModel
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MusicFragment : Fragment(R.layout.fragment_music) {
+
+    @Inject
+    lateinit var moduleNavigator: ModuleNavigatorInterface
+
     private val viewBinding: FragmentMusicBinding by viewBinding(FragmentMusicBinding::bind)
     private val musicViewModel by viewModels<MusicViewModel>()
 
@@ -87,7 +95,27 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
     private fun updateUI(musicCategories: List<MusicCategory>) {
         musicCategoriesAdapter.setItems(items = musicCategories)
 
-        // TODO refactor lines below
+        with(viewBinding) {
+            memoryUsageViewMemory.setupNavigator(
+                navigate = {
+                    moduleNavigator.navigateToPlaylist(
+                        navController = findNavController(),
+                        playListScreenType = PlayListScreenType.MEMORY,
+                    )
+                },
+            )
+
+            memoryUsageViewFileSystem.setupNavigator(
+                navigate = {
+                    moduleNavigator.navigateToPlaylist(
+                        navController = findNavController(),
+                        playListScreenType = PlayListScreenType.FILE_SYSTEM,
+                    )
+                },
+            )
+        }
+
+        // TODO refactor Mocked lines below
         updateMemoryMelodyLength(melodyLength = 3601)
         updateFileSystemMelodyLength(melodyLength = 360103)
     }

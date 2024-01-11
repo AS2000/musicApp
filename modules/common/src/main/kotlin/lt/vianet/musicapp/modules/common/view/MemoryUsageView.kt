@@ -17,11 +17,12 @@ class MemoryUsageView @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr, defStyleRes) {
     private val viewBinding =
         ViewMemoryUsageBinding.inflate(LayoutInflater.from(context), this, true)
+    private lateinit var navigate: () -> Unit
     private var screenType: PlayListScreenType? = null
-    private var melodyLength: Int = 0
 
     init {
         resolveAttributes(attrs = attrs)
+        setupListeners()
         setupView()
     }
 
@@ -39,6 +40,14 @@ class MemoryUsageView @JvmOverloads constructor(
             }
         } finally {
             typedArray.recycle()
+        }
+    }
+
+    private fun setupListeners() {
+        with(viewBinding) {
+            viewMemoryIconRightArrow.setOnClickListener {
+                navigate()
+            }
         }
     }
 
@@ -66,6 +75,10 @@ class MemoryUsageView @JvmOverloads constructor(
                 R.string.memory_usage_view_file_system,
             )
         }
+    }
+
+    fun setupNavigator(navigate: () -> Unit) {
+        this.navigate = navigate
     }
 
     fun setMelodyLength(melodyLength: Int) {

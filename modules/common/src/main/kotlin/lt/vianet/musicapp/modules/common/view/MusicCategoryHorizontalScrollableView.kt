@@ -10,7 +10,7 @@ import lt.vianet.musicapp.modules.common.helper.MusicCategoryHelper.getCategoryT
 import lt.vianet.musicapp.modules.common.view.adapter.MusicAdapter
 import lt.vianet.musicapp.modules.data.model.enums.CategoryType
 import lt.vianet.musicapp.modules.data.model.music.MusicCategory
-import lt.vienet.musicApp.modules.common.databinding.ViewMusicCategoryHorizontalScrollableBinding
+import lt.vienet.musicapp.modules.common.databinding.ViewMusicCategoryHorizontalScrollableBinding
 
 class MusicCategoryHorizontalScrollableView @JvmOverloads constructor(
     context: Context,

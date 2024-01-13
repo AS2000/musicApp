@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import lt.vianet.musicapp.modules.common.view.holder.MusicViewHolder
 import lt.vianet.musicapp.modules.data.model.music.MusicItem
-import lt.vienet.musicApp.modules.common.databinding.ViewMusicItemBinding
+import lt.vienet.musicapp.modules.common.databinding.ViewMusicItemBinding
 
 private const val MAX_ITEMS_IN_SCROLL = 5
 

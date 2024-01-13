@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     kotlin("android")
-    kotlin("kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -17,7 +17,7 @@ dependencies {
 
     // Hilt / Dagger
     implementation(Dependencies.hilt)
-    kapt(Dependencies.hiltCompiler)
+    ksp(Dependencies.hiltCompiler)
 
     // Androidx
     implementation(Dependencies.androidxCoreKtx)
@@ -31,7 +31,7 @@ dependencies {
 
     // Moshi (Json parser)
     implementation(Dependencies.moshi)
-    kapt(Dependencies.moshiCodegen)
+    ksp(Dependencies.moshiCodegen)
 
     // Logging Interceptor - logs HTTP request and response data.
     implementation(Dependencies.loggingInterceptor)

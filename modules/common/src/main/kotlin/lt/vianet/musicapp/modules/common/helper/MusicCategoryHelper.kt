@@ -2,7 +2,7 @@ package lt.vianet.musicapp.modules.common.helper
 
 import android.content.Context
 import lt.vianet.musicapp.modules.data.model.enums.CategoryType
-import lt.vienet.musicApp.modules.common.R
+import lt.vienet.musicapp.modules.common.R
 
 object MusicCategoryHelper {
     fun getCategoryType(context: Context, categoryType: CategoryType): String =

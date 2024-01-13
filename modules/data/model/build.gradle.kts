@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     kotlin("android")
-    kotlin("kapt")
+    id("com.google.devtools.ksp")
     id("kotlin-parcelize")
 }
 
@@ -21,11 +21,12 @@ android {
 dependencies {
     // Hilt / Dagger
     implementation(Dependencies.hilt)
-    kapt(Dependencies.hiltCompiler)
+    ksp(Dependencies.hiltCompiler)
 
     // Room (DataBase)
     implementation(Dependencies.androidxRoomRuntime)
-    kapt(Dependencies.androidxRoomCompiler)
+    ksp(Dependencies.androidxRoomCompiler)
+
     implementation(Dependencies.androidxRoomKtx)
     implementation(Dependencies.androidxRoomTesting)
 
@@ -35,5 +36,5 @@ dependencies {
 
     // Moshi (Json parser)
     implementation(Dependencies.moshi)
-    kapt(Dependencies.moshiCodegen)
+    ksp(Dependencies.moshiCodegen)
 }

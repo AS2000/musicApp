@@ -1,0 +1,67 @@
+{
+  "data": {
+    "music_category": {
+      "id": "20001",
+      "category_type": "blues",
+      "music_items": [
+        {
+          "id": "11000",
+          "performer": "Eric Clapton",
+          "title": "Sign",
+          "weight": 5,
+          "length": 194,
+          "imageUrl": "eric_clapton_signe.jpg"
+        },
+        {
+          "id": "11001",
+          "performer": "Eric Clapton",
+          "title": "Before You Accuse Me",
+          "weight": 6,
+          "length": 225,
+          "imageUrl": "eric_clapton_1.jpg"
+        },
+        {
+          "id": "11002",
+          "performer": "Eric Clapton",
+          "title": "Hey Hey",
+          "weight": 5,
+          "length": 197,
+          "imageUrl": "eric_clapton_2.jpg"
+        },
+        {
+          "id": "11003",
+          "performer": "Eric Clapton",
+          "title": "Tears in Heaven",
+          "weight": 7,
+          "length": 276,
+          "imageUrl": "eric_clapton_tears.jpg"
+        },
+        {
+          "id": "11004",
+          "performer": "Eric Clapton",
+          "title": "Lonely Stranger",
+          "weight": 8,
+          "length": 328,
+          "imageUrl": "eric_clapton_3.jpg"
+        },
+        {
+          "id": "11005",
+          "performer": "Eric Clapton",
+          "title": "Nobody Knows You",
+          "weight": 6,
+          "length": 229,
+          "imageUrl": "eric_clapton_4.jpg"
+        },
+        {
+          "id": "11006",
+          "performer": "Eric Clapton",
+          "title": "Layla",
+          "weight": 20,
+          "length": 277,
+          "imageUrl": "eric_clapton_layla.jpg"
+        }
+      ]
+    }
+  },
+  "error_data": null
+}

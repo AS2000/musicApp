@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("dagger.hilt.android.plugin")
     kotlin("android")
-    kotlin("kapt")
+    id("com.google.devtools.ksp")
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -86,7 +86,7 @@ dependencies {
 
     // Hilt / Dagger
     implementation(Dependencies.hilt)
-    kapt(Dependencies.hiltCompiler)
+    ksp(Dependencies.hiltCompiler)
 
     // Retrofit (Network)
     implementation(Dependencies.retrofit)
@@ -96,13 +96,9 @@ dependencies {
     implementation(Dependencies.loggingInterceptor)
 
     // Glide
-    implementation(Dependencies.glide)
-    kapt(Dependencies.glideAnnotationProcessor)
+//    implementation(Dependencies.glide)
+    ksp(Dependencies.glideAnnotationProcessor)
 
     // Tests
     testImplementation(Dependencies.kotlinTest)
-}
-
-kapt {
-    correctErrorTypes = true
 }

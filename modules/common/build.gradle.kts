@@ -1,11 +1,12 @@
 plugins {
     id("com.android.library")
+    id("dagger.hilt.android.plugin")
     kotlin("android")
-    kotlin("kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
-    namespace = "lt.vienet.musicApp.modules.common"
+    namespace = "lt.vienet.musicapp.modules.common"
     compileSdk = ConfigAndroid.compileSdkVersion
 
     defaultConfig {
@@ -57,11 +58,10 @@ dependencies {
 
     // Hilt / Dagger
     implementation(Dependencies.hilt)
-    kapt(Dependencies.hiltCompiler)
+    ksp(Dependencies.hiltCompiler)
 
     // Glide
-    implementation(Dependencies.glide)
-    kapt(Dependencies.glideAnnotationProcessor)
+    ksp(Dependencies.glideAnnotationProcessor)
 
     // Tests
     testImplementation(Dependencies.kotlinTest)

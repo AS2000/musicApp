@@ -1,17 +1,17 @@
 object Dependencies {
 
     // Androidx
-    private const val coreKtxVersion = "1.9.0"
+    private const val coreKtxVersion = "1.12.0"
     const val androidxCoreKtx = "androidx.core:core-ktx:$coreKtxVersion"
 
-    private const val appCompatVersion = "1.6.0"
+    private const val appCompatVersion = "1.6.1"
     const val androidxAppCompat = "androidx.appcompat:appcompat:$appCompatVersion"
 
     // Gradle
-    private const val androidBuildToolsVersion = "7.2.1"
+    private const val androidBuildToolsVersion = "8.2.1"
     const val androidBuildToolsGradlePlugin =
         "com.android.tools.build:gradle:$androidBuildToolsVersion"
-    private const val kotlinGradleVersion = "1.7.21"
+    private const val kotlinGradleVersion = "1.9.22"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinGradleVersion"
 
     // Splash screen
@@ -71,7 +71,7 @@ object Dependencies {
         "androidx.navigation:navigation-testing:$androidxNavigationVersion"
 
     // Room (DataBase)
-    private const val androidxRoomVersion = "2.5.1"
+    private const val androidxRoomVersion = "2.6.1"
     const val androidxRoomRuntime = "androidx.room:room-runtime:$androidxRoomVersion"
     const val androidxRoomCompiler = "androidx.room:room-compiler:$androidxRoomVersion"
     const val androidxRoomKtx = "androidx.room:room-ktx:$androidxRoomVersion"
@@ -83,7 +83,7 @@ object Dependencies {
     const val retrofitMoshi = "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
 
     // Moshi (Json parser)
-    private const val moshiVersion = "1.14.0"
+    private const val moshiVersion = "1.15.0"
     const val moshi = "com.squareup.moshi:moshi:$moshiVersion"
     const val moshiCodegen = "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
 
@@ -109,9 +109,8 @@ object Dependencies {
     const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
 
     // Glide
-    private const val glideVersion = "4.15.0"
-    const val glide = "com.github.bumptech.glide:glide:$glideVersion"
-    const val glideAnnotationProcessor = "com.github.bumptech.glide:compiler:$glideVersion"
+    private const val glideVersion = "4.16.0"
+    const val glideAnnotationProcessor = "com.github.bumptech.glide:ksp:$glideVersion"
 
     // Tests
     const val kotlinTest = "org.jetbrains.kotlin:kotlin-test:1.9.22"

@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     kotlin("android")
-    kotlin("kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -57,11 +57,7 @@ dependencies {
 
     // Hilt / Dagger
     implementation(Dependencies.hilt)
-    kapt(Dependencies.hiltCompiler)
-
-    // Glide
-    implementation(Dependencies.glide)
-    kapt(Dependencies.glideAnnotationProcessor)
+    ksp(Dependencies.hiltCompiler)
 
     // Tests
     testImplementation(Dependencies.kotlinTest)

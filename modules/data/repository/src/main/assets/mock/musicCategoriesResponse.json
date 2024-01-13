@@ -11,7 +11,7 @@
             "title": "It's my life",
             "weight": 18,
             "length": 260,
-            "imageUrl": null
+            "image_url": "john_bon_jovi_life.jpg"
           },
           {
             "id": "10001",
@@ -19,7 +19,7 @@
             "title": "Queen of New Orleans",
             "weight": 18,
             "length": 272,
-            "imageUrl": null
+            "image_url": "john_bon_jovi_queen.jpg"
           },
           {
             "id": "10002",
@@ -27,7 +27,7 @@
             "title": "Everybody Hurts",
             "weight": 25,
             "length": 296,
-            "imageUrl": null
+            "image_url": "john_bon_jovi_everybody.jpg"
           }
         ]
       },
@@ -36,12 +36,52 @@
         "category_type": "blues",
         "music_items": [
           {
-            "id": "11000",
+            "id": "11001",
+            "performer": "Eric Clapton",
+            "title": "Before You Accuse Me",
+            "weight": 6,
+            "length": 225,
+            "image_url": "eric_clapton_1.jpg"
+          },
+          {
+            "id": "11002",
+            "performer": "Eric Clapton",
+            "title": "Hey Hey",
+            "weight": 5,
+            "length": 197,
+            "image_url": "eric_clapton_2.jpg"
+          },
+          {
+            "id": "11003",
+            "performer": "Eric Clapton",
+            "title": "Tears in Heaven",
+            "weight": 7,
+            "length": 276,
+            "image_url": "eric_clapton_tears.jpg"
+          },
+          {
+            "id": "11004",
+            "performer": "Eric Clapton",
+            "title": "Lonely Stranger",
+            "weight": 8,
+            "length": 328,
+            "image_url": null
+          },
+          {
+            "id": "11005",
+            "performer": "Eric Clapton",
+            "title": "Nobody Knows You",
+            "weight": 6,
+            "length": 229,
+            "image_url": "eric_clapton_4.jpg"
+          },
+          {
+            "id": "11006",
             "performer": "Eric Clapton",
             "title": "Layla",
             "weight": 20,
             "length": 277,
-            "imageUrl": null
+            "image_url": "eric_clapton_layla.jpg"
           }
         ]
       },
@@ -55,7 +95,7 @@
             "title": "It's Been a Long, Long Time",
             "weight": 11,
             "length": 204,
-            "imageUrl": null
+            "image_url": "louis_armstrong_long.jpg"
           }
         ]
       }

@@ -38,9 +38,7 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
     private var playListScreenType: PlayListScreenType = PlayListScreenType.MEMORY
     private var categoryType: CategoryType = CategoryType.ROCK
 
-    private val playlistAdapter = PlaylistAdapter() { itemId ->
-        onItemSaveClicked(itemId = itemId)
-    }
+    private val playlistAdapter = PlaylistAdapter() { itemId -> onItemSaveClicked(itemId = itemId) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -153,6 +151,7 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
     private fun updateUI(musicCategory: MusicCategory) {
         musicCategory.musicItems ?: return
 
+        playlistAdapter.setPlayListScreenType(playListScreenType = playListScreenType)
         playlistAdapter.setItems(items = musicCategory.musicItems as List<MusicItem>)
     }
 

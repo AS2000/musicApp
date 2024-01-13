@@ -22,7 +22,7 @@ class MusicCompositionView @JvmOverloads constructor(
         ViewMusicCompositionBinding.inflate(LayoutInflater.from(context), this, true)
 
     fun setMusicItem(musicItem: MusicItem) {
-        displayImage(imageName = musicItem.imageUrl)
+        displayImage(imageName = musicItem.imageName)
 
         with(viewBinding) {
             viewMusicItemPerformer.text = musicItem.performer ?: ""

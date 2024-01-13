@@ -3,36 +3,6 @@
     "music_categories": [
       {
         "id": "20000",
-        "category_type": "rock",
-        "music_items": [
-          {
-            "id": "10000",
-            "performer": "John Bon Jovi",
-            "title": "It's my life",
-            "weight": 18,
-            "length": 260,
-            "image_url": "john_bon_jovi_life.jpg"
-          },
-          {
-            "id": "10001",
-            "performer": "John Bon Jovi",
-            "title": "Queen of New Orleans",
-            "weight": 18,
-            "length": 272,
-            "image_url": "john_bon_jovi_queen.jpg"
-          },
-          {
-            "id": "10002",
-            "performer": "John Bon Jovi",
-            "title": "Everybody Hurts",
-            "weight": 25,
-            "length": 296,
-            "image_url": "john_bon_jovi_everybody.jpg"
-          }
-        ]
-      },
-      {
-        "id": "20001",
         "category_type": "blues",
         "music_items": [
           {
@@ -41,7 +11,9 @@
             "title": "Before You Accuse Me",
             "weight": 6,
             "length": 225,
-            "image_url": "eric_clapton_1.jpg"
+            "image_name": "eric_clapton_1.jpg",
+            "file_name": "eric_clapton_1.mp3",
+            "is_downloaded": false
           },
           {
             "id": "11002",
@@ -49,7 +21,9 @@
             "title": "Hey Hey",
             "weight": 5,
             "length": 197,
-            "image_url": "eric_clapton_2.jpg"
+            "image_name": "eric_clapton_2.jpg",
+            "file_name": "eric_clapton_2.mp3",
+            "is_downloaded": false
           },
           {
             "id": "11003",
@@ -57,7 +31,9 @@
             "title": "Tears in Heaven",
             "weight": 7,
             "length": 276,
-            "image_url": "eric_clapton_tears.jpg"
+            "image_name": "eric_clapton_tears.jpg",
+            "file_name": "eric_clapton_tears.mp3",
+            "is_downloaded": false
           },
           {
             "id": "11004",
@@ -65,7 +41,9 @@
             "title": "Lonely Stranger",
             "weight": 8,
             "length": 328,
-            "image_url": null
+            "image_name": null,
+            "file_name": null,
+            "is_downloaded": false
           },
           {
             "id": "11005",
@@ -73,7 +51,9 @@
             "title": "Nobody Knows You",
             "weight": 6,
             "length": 229,
-            "image_url": "eric_clapton_4.jpg"
+            "image_name": "eric_clapton_4.jpg",
+            "file_name": "eric_clapton_4.mp3",
+            "is_downloaded": false
           },
           {
             "id": "11006",
@@ -81,7 +61,45 @@
             "title": "Layla",
             "weight": 20,
             "length": 277,
-            "image_url": "eric_clapton_layla.jpg"
+            "image_name": "eric_clapton_layla.jpg",
+            "file_name": "eric_clapton_layla.mp3",
+            "is_downloaded": false
+          }
+        ]
+      },
+      {
+        "id": "20001",
+        "category_type": "rock",
+        "music_items": [
+          {
+            "id": "10000",
+            "performer": "John Bon Jovi",
+            "title": "It's my life",
+            "weight": 18,
+            "length": 260,
+            "image_name": "john_bon_jovi_life.jpg",
+            "file_name": "john_bon_jovi_life.mp3",
+            "is_downloaded": false
+          },
+          {
+            "id": "10001",
+            "performer": "John Bon Jovi",
+            "title": "Queen of New Orleans",
+            "weight": 18,
+            "length": 272,
+            "image_name": "john_bon_jovi_queen.jpg",
+            "file_name": "john_bon_jovi_queen.mp3",
+            "is_downloaded": false
+          },
+          {
+            "id": "10002",
+            "performer": "John Bon Jovi",
+            "title": "Everybody Hurts",
+            "weight": 25,
+            "length": 296,
+            "image_name": "john_bon_jovi_everybody.jpg",
+            "file_name": "john_bon_jovi_everybody.mp3",
+            "is_downloaded": false
           }
         ]
       },
@@ -95,7 +113,9 @@
             "title": "It's Been a Long, Long Time",
             "weight": 11,
             "length": 204,
-            "image_url": "louis_armstrong_long.jpg"
+            "image_name": "louis_armstrong_long.jpg",
+            "file_name": "louis_armstrong_long.mp3",
+            "is_downloaded": false
           }
         ]
       }

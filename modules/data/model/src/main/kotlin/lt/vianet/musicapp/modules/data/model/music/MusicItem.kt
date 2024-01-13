@@ -20,6 +20,12 @@ data class MusicItem(
     @field:Json(name = "length")
     val length: Int? = null,
 
-    @field:Json(name = "image_url")
-    val imageUrl: String? = null,
+    @field:Json(name = "image_name")
+    val imageName: String? = null,
+
+    @field:Json(name = "file_name")
+    val fileName: String? = null,
+
+    @field:Json(name = "is_downloaded")
+    val isDownloaded: Boolean? = null,
 )

@@ -22,6 +22,24 @@ object MusicCompositionHelper {
         compositionLength += if (minutes > 0) " ${minutes}m" else ""
         compositionLength += if (seconds > 0) " ${seconds}s" else ""
 
-        return compositionLength
+        return compositionLength.trim()
+    }
+
+    fun concatenateStrings(value1: String?, value2: String?): String {
+        var returnedString = ""
+        returnedString += value1 ?: ""
+        returnedString += if (!value1.isNullOrBlank() && !value2.isNullOrBlank()) " - " else ""
+        returnedString += value2 ?: ""
+
+        return returnedString
+    }
+
+    fun concatenateInts(value1: Int?, value2: Int?): String {
+        var returnedString = ""
+        returnedString += if (value1 != null) getMelodyWeightAsString(weight = value1) else ""
+        returnedString += if (value1 != null && value2 != null) " - " else ""
+        returnedString += if (value2 != null) getMelodyLengthAsString(length = value2) else ""
+
+        return returnedString
     }
 }

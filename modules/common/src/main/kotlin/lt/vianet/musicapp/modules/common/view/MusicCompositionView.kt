@@ -5,10 +5,10 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import dagger.hilt.android.AndroidEntryPoint
+import lt.vianet.musicapp.modules.common.databinding.ViewMusicCompositionBinding
 import lt.vianet.musicapp.modules.common.helper.MusicCompositionHelper.getMelodyLengthAsString
 import lt.vianet.musicapp.modules.common.helper.MusicCompositionHelper.getMelodyWeightAsString
 import lt.vianet.musicapp.modules.data.model.music.MusicItem
-import lt.vienet.musicapp.modules.common.databinding.ViewMusicCompositionBinding
 
 @AndroidEntryPoint
 class MusicCompositionView @JvmOverloads constructor(

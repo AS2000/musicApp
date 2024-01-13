@@ -4,10 +4,10 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import lt.vianet.musicapp.modules.common.R
+import lt.vianet.musicapp.modules.common.databinding.ViewMemoryUsageBinding
 import lt.vianet.musicapp.modules.common.helper.MusicCompositionHelper
 import lt.vianet.musicapp.modules.data.model.enums.PlayListScreenType
-import lt.vienet.musicapp.modules.common.R
-import lt.vienet.musicapp.modules.common.databinding.ViewMemoryUsageBinding
 
 class MemoryUsageView @JvmOverloads constructor(
     context: Context,

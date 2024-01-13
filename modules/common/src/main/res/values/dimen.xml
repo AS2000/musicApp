@@ -7,8 +7,10 @@
     <dimen name="text_24">24sp</dimen>
     <dimen name="text_36">36sp</dimen>
 
+    <dimen name="space_1">1dp</dimen>
     <dimen name="space_2">2dp</dimen>
     <dimen name="space_4">4dp</dimen>
+    <dimen name="space_6">6dp</dimen>
     <dimen name="space_8">8dp</dimen>
     <dimen name="space_10">10dp</dimen>
     <dimen name="space_14">14dp</dimen>
@@ -25,4 +27,7 @@
 
     <!-- View Memory Usage -->
     <dimen name="view_memory_usage_icon_right_arrow_size">18dp</dimen>
+
+    <!-- View Memory Usage -->
+    <dimen name="playlist_save_icon_size">36dp</dimen>
 </resources>

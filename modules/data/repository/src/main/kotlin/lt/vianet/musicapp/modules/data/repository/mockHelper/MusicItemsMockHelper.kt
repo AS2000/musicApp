@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import lt.vianet.musicapp.modules.common.extension.TAG
 import lt.vianet.musicapp.modules.data.model.music.response.MusicCategoriesResponse
-import lt.vianet.musicapp.modules.data.model.music.response.MusicItemsResponse
+import lt.vianet.musicapp.modules.data.model.music.response.MusicCategoryResponse
 import lt.vianet.musicapp.modules.data.repository.mockHelper.parser.ParseJsonMusicItemsHelper
 import java.io.IOException
 
@@ -24,15 +24,15 @@ object MusicItemsMockHelper {
         return ParseJsonMusicItemsHelper.parseJsonMusicCategories(jsonString = jsonString)
     }
 
-    fun getMusicItemsMock(context: Context): MusicItemsResponse? {
+    fun getMusicCategoryMock(context: Context): MusicCategoryResponse? {
         val jsonString: String?
 
         try {
-            jsonString = context.assets.open("mock/musicItemsResponse.json")
+            jsonString = context.assets.open("mock/musicCategoryResponse.json")
                 .bufferedReader()
                 .use { it.readText() }
         } catch (ioException: IOException) {
-            Log.e(TAG, ioException.message ?: "Can't read musicItemsResponse.json file")
+            Log.e(TAG, ioException.message ?: "Can't read musicCategoryResponse.json file")
             return null
         }
 

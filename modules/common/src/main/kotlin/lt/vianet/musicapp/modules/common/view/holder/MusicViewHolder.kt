@@ -1,8 +1,8 @@
 package lt.vianet.musicapp.modules.common.view.holder
 
 import androidx.recyclerview.widget.RecyclerView
+import lt.vianet.musicapp.modules.common.databinding.ViewMusicItemBinding
 import lt.vianet.musicapp.modules.data.model.music.MusicItem
-import lt.vienet.musicapp.modules.common.databinding.ViewMusicItemBinding
 
 class MusicViewHolder(private val viewBinding: ViewMusicItemBinding) :
     RecyclerView.ViewHolder(viewBinding.root) {

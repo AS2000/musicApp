@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "lt.vienet.musicapp.modules.common"
+    namespace = "lt.vianet.musicapp.modules.common"
     compileSdk = ConfigAndroid.compileSdkVersion
 
     defaultConfig {

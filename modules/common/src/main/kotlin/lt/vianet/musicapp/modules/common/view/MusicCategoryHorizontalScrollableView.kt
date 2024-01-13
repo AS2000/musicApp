@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import lt.vianet.musicapp.modules.common.databinding.ViewMusicCategoryHorizontalScrollableBinding
 import lt.vianet.musicapp.modules.common.helper.MusicCategoryHelper.getCategoryType
 import lt.vianet.musicapp.modules.common.view.adapter.MusicAdapter
 import lt.vianet.musicapp.modules.data.model.enums.CategoryType
 import lt.vianet.musicapp.modules.data.model.music.MusicCategory
-import lt.vienet.musicapp.modules.common.databinding.ViewMusicCategoryHorizontalScrollableBinding
 
 class MusicCategoryHorizontalScrollableView @JvmOverloads constructor(
     context: Context,

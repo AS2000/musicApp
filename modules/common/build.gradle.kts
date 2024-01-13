@@ -65,4 +65,7 @@ dependencies {
 
     // Tests
     testImplementation(Dependencies.kotlinTest)
+
+    // Test Mock
+    testImplementation(Dependencies.mockito)
 }

@@ -6,11 +6,13 @@ private const val SECONDS_IN_HOUR = 3600
 object MusicCompositionHelper {
     fun getMelodyWeightAsString(weight: Int?): String {
         weight ?: return ""
+        if (weight <= 0) return ""
         return "${weight}M"
     }
 
     fun getMelodyLengthAsString(length: Int?): String {
         length ?: return ""
+        if (length <= 0) return ""
 
         val hours = if (length > SECONDS_IN_HOUR) length / SECONDS_IN_HOUR else 0
         val withoutHours = (length - (hours * SECONDS_IN_HOUR))
@@ -25,16 +27,16 @@ object MusicCompositionHelper {
         return compositionLength.trim()
     }
 
-    fun concatenateStrings(value1: String?, value2: String?): String {
+    fun getConcatenatedStrings(value1: String?, value2: String?): String {
         var returnedString = ""
-        returnedString += value1 ?: ""
+        returnedString += (value1 ?: "").trim()
         returnedString += if (!value1.isNullOrBlank() && !value2.isNullOrBlank()) " - " else ""
-        returnedString += value2 ?: ""
+        returnedString += (value2 ?: "").trim()
 
         return returnedString
     }
 
-    fun concatenateInts(value1: Int?, value2: Int?): String {
+    fun getConcatenatedInts(value1: Int?, value2: Int?): String {
         var returnedString = ""
         returnedString += if (value1 != null) getMelodyWeightAsString(weight = value1) else ""
         returnedString += if (value1 != null && value2 != null) " - " else ""

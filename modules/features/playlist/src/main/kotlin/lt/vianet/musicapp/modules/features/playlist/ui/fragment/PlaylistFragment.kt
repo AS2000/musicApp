@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -96,6 +97,8 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
     }
 
     private fun setupUI() {
+        setupTopBar()
+
         with(viewBinding) {
             with(playlistSwipeRefreshLayout) {
                 onRefresh(
@@ -123,6 +126,26 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
                 addItemDecoration(divider)
                 adapter = playlistAdapter
                 itemAnimator = DefaultItemAnimator()
+            }
+        }
+    }
+
+    private fun setupTopBar() {
+        with(viewBinding.playlistToolbar) {
+            setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
+
+            title = when (playListScreenType) {
+                PlayListScreenType.MEMORY -> context.resources.getString(
+                    lt.vianet.musicapp.modules.common.R.string.playlist_screen_toolbar_title_memory,
+                )
+
+                PlayListScreenType.FILE_SYSTEM -> context.resources.getString(
+                    lt.vianet.musicapp.modules.common.R.string.playlist_screen_toolbar_title_filesystem,
+                )
+
+                else -> categoryType.name
             }
         }
     }

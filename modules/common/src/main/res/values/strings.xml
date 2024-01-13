@@ -19,6 +19,11 @@
     <!-- Music Screen -->
     <string name="music.screen.title.storage">Storage</string>
 
+    <!-- Playlist Screen -->
+    <string name="playlist.screen.toolbar.title.default">Playlist</string>
+    <string name="playlist.screen.toolbar.title.memory">Memory</string>
+    <string name="playlist.screen.toolbar.title.filesystem">Filesystem</string>
+
     <!-- Memory Usage View -->
     <string name="memory.usage.view.memory">Memory</string>
     <string name="memory.usage.view.file.system">File System</string>

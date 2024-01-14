@@ -6,25 +6,18 @@ import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import lt.vianet.musicapp.modules.common.constant.Navigation
-import lt.vianet.musicapp.modules.common.extension.onRefresh
 import lt.vianet.musicapp.modules.data.model.enums.CategoryType
 import lt.vianet.musicapp.modules.data.model.enums.PlayListScreenType
-import lt.vianet.musicapp.modules.data.model.music.MusicCategory
 import lt.vianet.musicapp.modules.data.model.music.MusicItem
 import lt.vianet.musicapp.modules.features.playlist.R
 import lt.vianet.musicapp.modules.features.playlist.databinding.FragmentPlaylistBinding
-import lt.vianet.musicapp.modules.features.playlist.state.MusicCategoryState
 import lt.vianet.musicapp.modules.features.playlist.ui.adapter.PlaylistAdapter
 import lt.vianet.musicapp.modules.features.playlist.viewmodel.PlaylistViewModel
 
@@ -67,42 +60,12 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
 
     private fun setupListeners() {}
 
-    private fun setupObservers() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                with(viewBinding) {
-                    playlistViewModel.musicCategoryState.collect { state ->
-                        when (state) {
-                            is MusicCategoryState.Loading -> {
-                                playlistSwipeRefreshLayout.isRefreshing = true
-                            }
-
-                            is MusicCategoryState.Success -> {
-                                playlistSwipeRefreshLayout.isRefreshing = false
-                                updateAdapter(musicCategory = state.musicCategory)
-                            }
-
-                            else -> {
-                                playlistSwipeRefreshLayout.isRefreshing = false
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+    private fun setupObservers() {}
 
     private fun setupUI() {
         setupTopBar()
 
         with(viewBinding) {
-            with(playlistSwipeRefreshLayout) {
-                onRefresh(
-                    isCurrentlyLoading = { playlistViewModel.isLoading() },
-                ) {
-                    playlistViewModel.getPlaylist()
-                }
-            }
             with(playlistRecyclerView) {
                 layoutManager = LinearLayoutManager(
                     context,
@@ -124,6 +87,8 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
                 itemAnimator = DefaultItemAnimator()
             }
         }
+
+        updateAdapter()
     }
 
     private fun setupTopBar() {
@@ -146,11 +111,8 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
         }
     }
 
-    private fun updateAdapter(musicCategory: MusicCategory) {
-        musicCategory.musicItems ?: return
-
+    private fun updateAdapter() {
         playlistAdapter.setPlayListScreenType(playListScreenType = playListScreenType)
-        playlistAdapter.setItems(items = musicCategory.musicItems as List<MusicItem>)
 
         getMusicCategoryFromMemoryStorage()
     }

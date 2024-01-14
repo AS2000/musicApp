@@ -23,6 +23,7 @@ import lt.vianet.musicapp.modules.features.music.databinding.FragmentMusicBindin
 import lt.vianet.musicapp.modules.features.music.state.MusicItemsState
 import lt.vianet.musicapp.modules.features.music.ui.adapter.MusicCategoriesAdapter
 import lt.vianet.musicapp.modules.features.music.viewmodel.MusicViewModel
+import lt.vianet.musicapp.modules.features.playlist.state.MusicCategoryState
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -65,6 +66,27 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
                             is MusicItemsState.Success -> {
                                 swipeRefreshLayoutMusic.isRefreshing = false
                                 updateUI(musicCategories = state.musicCategories)
+                            }
+
+                            else -> {
+                                swipeRefreshLayoutMusic.isRefreshing = false
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                with(viewBinding) {
+                    musicViewModel.musicCategoryState.collect { state ->
+                        when (state) {
+                            is MusicCategoryState.Loading -> {
+                                swipeRefreshLayoutMusic.isRefreshing = true
+                            }
+
+                            is MusicCategoryState.Success -> {
+                                swipeRefreshLayoutMusic.isRefreshing = false
                             }
 
                             else -> {

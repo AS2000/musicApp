@@ -153,6 +153,12 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
 
         playlistAdapter.setPlayListScreenType(playListScreenType = playListScreenType)
         playlistAdapter.setItems(items = musicCategory.musicItems as List<MusicItem>)
+
+        getMusicCategoryFromMemoryStorage()
+    }
+
+    private fun getMusicCategoryFromMemoryStorage() {
+        playlistViewModel.getMusicCategoryFromMemoryStorage()
     }
 
     private fun onItemSaveClicked(itemId: Int) {

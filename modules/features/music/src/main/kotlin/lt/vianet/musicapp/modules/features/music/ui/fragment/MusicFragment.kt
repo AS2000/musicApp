@@ -124,9 +124,8 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
             )
         }
 
-        // TODO refactor Mocked lines below
-        updateMemoryMelodyLength(melodyLength = 3601)
-        updateFileSystemMelodyLength(melodyLength = 360103)
+        updateMemoryMelodyLength(melodyLength = musicViewModel.getMelodyLengthInMemory())
+        updateFileSystemMelodyLength(melodyLength = musicViewModel.getMelodyLengthInFilesystem())
     }
 
     private fun updateMemoryMelodyLength(melodyLength: Int = 0) {

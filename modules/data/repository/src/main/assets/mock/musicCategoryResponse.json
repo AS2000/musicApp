@@ -12,7 +12,7 @@
           "length": 194,
           "image_name": "eric_clapton_signe.jpg",
           "file_name": "eric_clapton_signe.mp3",
-          "is_downloaded": false
+          "is_downloaded": true
         },
         {
           "id": "11001",
@@ -32,7 +32,7 @@
           "length": 197,
           "image_name": "eric_clapton_2.jpg",
           "file_name": "eric_clapton_2.mp3",
-          "is_downloaded": false
+          "is_downloaded": true
         },
         {
           "id": "11003",

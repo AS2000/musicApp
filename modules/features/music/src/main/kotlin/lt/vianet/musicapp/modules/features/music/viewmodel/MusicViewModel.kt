@@ -8,13 +8,16 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import lt.vianet.musicapp.modules.data.model.music.MusicCategory
+import lt.vianet.musicapp.modules.data.model.music.MusicItem
 import lt.vianet.musicapp.modules.data.repository.music.MusicRepository
+import lt.vianet.musicapp.modules.data.storage.memoryStorage.MemoryStorage
 import lt.vianet.musicapp.modules.features.music.state.MusicItemsState
 import javax.inject.Inject
 
 @HiltViewModel
 class MusicViewModel @Inject constructor(
     private val musicRepository: MusicRepository,
+    private val memoryStorage: MemoryStorage,
 ) : ViewModel() {
 
     /** Profiles State */
@@ -44,4 +47,26 @@ class MusicViewModel @Inject constructor(
     }
 
     fun isLoading(): Boolean = _musicCategoriesState.value is MusicItemsState.Loading
+
+    fun getMelodyLengthInMemory(): Int {
+        val musicCategory = getMusicCategoryFromMemoryStorage() ?: return 0
+        return calculateDownloadedMelodiesLength(musicCategory = musicCategory)
+    }
+
+    fun getMelodyLengthInFilesystem(): Int {
+        // TODO SQLite
+        return 3601
+    }
+
+    private fun calculateDownloadedMelodiesLength(musicCategory: MusicCategory): Int {
+        val musicItems: List<MusicItem> =
+            musicCategory.musicItems?.filter { it.isDownloaded == true && it.length != null }
+                ?: return 0
+        if (musicItems.isEmpty()) return 0
+
+        return musicItems.sumOf { it.length!! }
+    }
+
+    private fun getMusicCategoryFromMemoryStorage(): MusicCategory? =
+        memoryStorage.getMusicCategory()
 }

@@ -26,6 +26,6 @@
 
     <!-- Memory Usage View -->
     <string name="memory.usage.view.memory">Memory</string>
-    <string name="memory.usage.view.file.system">File System</string>
+    <string name="memory.usage.view.filesystem">Filesystem</string>
     <string name="memory.usage.view.arrow.button.description">Melody details</string>
 </resources>

@@ -9,12 +9,14 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import lt.vianet.musicapp.modules.data.model.music.MusicCategory
 import lt.vianet.musicapp.modules.data.repository.music.MusicRepository
+import lt.vianet.musicapp.modules.data.storage.memoryStorage.MemoryStorage
 import lt.vianet.musicapp.modules.features.playlist.state.MusicCategoryState
 import javax.inject.Inject
 
 @HiltViewModel
 class PlaylistViewModel @Inject constructor(
     private val musicRepository: MusicRepository,
+    private val memoryStorage: MemoryStorage,
 ) : ViewModel() {
 
     /** Profiles State */
@@ -36,6 +38,8 @@ class PlaylistViewModel @Inject constructor(
                     musicCategory = response.data?.musicCategory as MusicCategory,
                 )
 
+                memoryStorage.setMusicCategory(musicCategory = response.data?.musicCategory)
+
                 return@launch
             }
 
@@ -44,4 +48,7 @@ class PlaylistViewModel @Inject constructor(
     }
 
     fun isLoading(): Boolean = _musicCategoryState.value is MusicCategoryState.Loading
+
+    fun getMusicCategoryFromMemoryStorage(): MusicCategory? =
+        memoryStorage.getMusicCategory()
 }

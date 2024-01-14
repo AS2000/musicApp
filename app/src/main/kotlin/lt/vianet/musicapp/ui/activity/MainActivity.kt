@@ -8,11 +8,16 @@ import androidx.navigation.fragment.NavHostFragment
 import dagger.hilt.android.AndroidEntryPoint
 import lt.vianet.musicapp.R
 import lt.vianet.musicapp.databinding.ActivityMainBinding
+import lt.vianet.musicapp.modules.data.storage.memoryStorage.MemoryStorage
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityMainBinding
     private lateinit var navController: NavController
+
+    @Inject
+    lateinit var memoryStorage: MemoryStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -32,4 +37,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean =
         navController.navigateUp() || super.onSupportNavigateUp()
+
+    override fun onStop() {
+        memoryStorage.clearSharedPreferences()
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        memoryStorage.clearSharedPreferences()
+        super.onDestroy()
+    }
 }

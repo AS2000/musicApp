@@ -72,7 +72,7 @@ class MemoryUsageView @JvmOverloads constructor(
     private fun renderFileSystemView() {
         with(viewBinding) {
             viewMemoryTitle.text = context.resources.getString(
-                R.string.memory_usage_view_file_system,
+                R.string.memory_usage_view_filesystem,
             )
         }
     }

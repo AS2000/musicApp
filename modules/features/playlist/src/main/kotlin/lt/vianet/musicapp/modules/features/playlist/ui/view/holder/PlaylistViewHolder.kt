@@ -26,38 +26,7 @@ class PlaylistViewHolder(private val viewBinding: ViewPlaylistItemBinding) :
 
         setupListeners(itemId = musicItem.id, onItemSaveClicked = onItemSaveClicked)
 
-        renderButtons(playListScreenType = playListScreenType)
-    }
-
-    private fun renderButtons(playListScreenType: PlayListScreenType) {
-        when (playListScreenType) {
-            PlayListScreenType.MEMORY -> buttonVisible()
-
-            PlayListScreenType.FILE_SYSTEM -> iconVisible()
-
-            else -> allHided()
-        }
-    }
-
-    private fun buttonVisible() {
-        with(viewBinding) {
-            viewMemoryButtonSave.visible()
-            viewMemoryCheckedIcon.gone()
-        }
-    }
-
-    private fun iconVisible() {
-        with(viewBinding) {
-            viewMemoryButtonSave.gone()
-            viewMemoryCheckedIcon.visible()
-        }
-    }
-
-    private fun allHided() {
-        with(viewBinding) {
-            viewMemoryButtonSave.gone()
-            viewMemoryCheckedIcon.gone()
-        }
+        handleIconVisibility(musicItem = musicItem, playListScreenType = playListScreenType)
     }
 
     private fun setupListeners(itemId: Int?, onItemSaveClicked: (itemId: Int) -> Unit) {
@@ -67,6 +36,49 @@ class PlaylistViewHolder(private val viewBinding: ViewPlaylistItemBinding) :
             viewMemoryButtonSave.setOnClickListener {
                 onItemSaveClicked(itemId)
             }
+        }
+    }
+
+    private fun handleIconVisibility(
+        playListScreenType: PlayListScreenType,
+        musicItem: MusicItem,
+    ) {
+        when (playListScreenType) {
+            PlayListScreenType.MEMORY -> renderIcon(musicItem = musicItem)
+
+            PlayListScreenType.FILE_SYSTEM -> renderIcon(musicItem = musicItem)
+
+            else -> allIconsHided()
+        }
+    }
+
+    private fun renderIcon(musicItem: MusicItem) {
+        if (musicItem.isDownloaded == true) {
+            showDoneIcon()
+            return
+        }
+
+        showSaveButton()
+    }
+
+    private fun showSaveButton() {
+        with(viewBinding) {
+            viewMemoryButtonSave.visible()
+            viewMemoryCheckedIcon.gone()
+        }
+    }
+
+    private fun showDoneIcon() {
+        with(viewBinding) {
+            viewMemoryButtonSave.gone()
+            viewMemoryCheckedIcon.visible()
+        }
+    }
+
+    private fun allIconsHided() {
+        with(viewBinding) {
+            viewMemoryButtonSave.gone()
+            viewMemoryCheckedIcon.gone()
         }
     }
 }

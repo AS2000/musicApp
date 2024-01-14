@@ -2,7 +2,6 @@ package lt.vianet.musicapp.modules.features.playlist.ui.fragment
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
@@ -18,7 +17,6 @@ import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import lt.vianet.musicapp.modules.common.constant.Navigation
-import lt.vianet.musicapp.modules.common.extension.TAG
 import lt.vianet.musicapp.modules.common.extension.onRefresh
 import lt.vianet.musicapp.modules.data.model.enums.CategoryType
 import lt.vianet.musicapp.modules.data.model.enums.PlayListScreenType
@@ -81,7 +79,7 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
 
                             is MusicCategoryState.Success -> {
                                 playlistSwipeRefreshLayout.isRefreshing = false
-                                updateUI(musicCategory = state.musicCategory)
+                                updateAdapter(musicCategory = state.musicCategory)
                             }
 
                             else -> {
@@ -148,7 +146,7 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
         }
     }
 
-    private fun updateUI(musicCategory: MusicCategory) {
+    private fun updateAdapter(musicCategory: MusicCategory) {
         musicCategory.musicItems ?: return
 
         playlistAdapter.setPlayListScreenType(playListScreenType = playListScreenType)
@@ -157,11 +155,13 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
         getMusicCategoryFromMemoryStorage()
     }
 
-    private fun getMusicCategoryFromMemoryStorage() {
-        playlistViewModel.getMusicCategoryFromMemoryStorage()
+    private fun onItemSaveClicked(itemId: Int) {
+        playlistViewModel.updateMusicCategory(itemId = itemId)
+
+        getMusicCategoryFromMemoryStorage()
     }
 
-    private fun onItemSaveClicked(itemId: Int) {
-        Log.e(TAG, "onItemSaveClicked - itemId: $itemId")
+    private fun getMusicCategoryFromMemoryStorage() {
+        playlistAdapter.setItems(items = playlistViewModel.getMusicCategoryFromMemoryStorage()?.musicItems as List<MusicItem>)
     }
 }

@@ -51,4 +51,8 @@ class PlaylistViewModel @Inject constructor(
 
     fun getMusicCategoryFromMemoryStorage(): MusicCategory? =
         memoryStorage.getMusicCategory()
+
+    fun updateMusicCategory(itemId: Int) {
+        memoryStorage.updateMusicCategory(itemId = itemId)
+    }
 }

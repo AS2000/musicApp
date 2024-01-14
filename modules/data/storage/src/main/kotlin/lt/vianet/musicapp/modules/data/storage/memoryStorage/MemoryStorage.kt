@@ -7,6 +7,7 @@ import android.util.Log
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import lt.vianet.musicapp.modules.data.model.music.MusicCategory
+import lt.vianet.musicapp.modules.data.model.music.MusicItem
 import javax.inject.Inject
 
 class MemoryStorage @Inject constructor(
@@ -40,6 +41,31 @@ class MemoryStorage @Inject constructor(
     fun getMusicCategory(): MusicCategory? {
         val data = sharedPreferences?.getString(KEY_MUSIC_CATEGORY, null) ?: return null
         return jsonAdapter.fromJson(data)
+    }
+
+    fun updateMusicCategory(itemId: Int) {
+        val musicCategory = getMusicCategory() ?: return
+        val updatedMusicCategory = musicCategory.copy(
+            musicItems = getUpdatedMusicItems(
+                itemId = itemId,
+                musicItems = musicCategory.musicItems,
+            ),
+        )
+        setMusicCategory(musicCategory = updatedMusicCategory)
+    }
+
+    private fun getUpdatedMusicItems(itemId: Int, musicItems: List<MusicItem>?): List<MusicItem> {
+        musicItems ?: return listOf()
+
+        return musicItems.map {
+            if (it.id == itemId) {
+                return@map it.copy(
+                    isDownloaded = true,
+                )
+            } else {
+                return@map it
+            }
+        }
     }
 
     fun clearSharedPreferences() {

@@ -59,6 +59,12 @@ dependencies {
     implementation(Dependencies.hilt)
     ksp(Dependencies.hiltCompiler)
 
+    // Room (DataBase)
+    implementation(Dependencies.androidxRoomRuntime)
+    ksp(Dependencies.androidxRoomCompiler)
+    implementation(Dependencies.androidxRoomKtx)
+    implementation(Dependencies.androidxRoomTesting)
+
     // Tests
     testImplementation(Dependencies.kotlinTest)
 }

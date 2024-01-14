@@ -87,6 +87,9 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
 
                             is MusicCategoryState.Success -> {
                                 swipeRefreshLayoutMusic.isRefreshing = false
+
+                                val musicItems = state.musicCategory.musicItems ?: return@collect
+                                musicViewModel.setMusicItemsToDatabase(musicItems = musicItems)
                             }
 
                             else -> {

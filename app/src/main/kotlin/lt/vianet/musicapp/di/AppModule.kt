@@ -9,6 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import lt.vianet.musicapp.Config
 import lt.vianet.musicapp.modules.data.network.service.MusicService
 import lt.vianet.musicapp.modules.data.repository.music.MusicRepository
+import lt.vianet.musicapp.modules.data.storage.database.music.MusicDatabase
 import lt.vianet.musicapp.modules.data.storage.memoryStorage.MemoryStorage
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -55,9 +56,10 @@ object AppModule {
     @Provides
     @Singleton
     fun providesMusicRepository(
+        musicDatabase: MusicDatabase,
         @ApplicationContext context: Context,
         musicService: MusicService,
-    ) = MusicRepository(context = context, musicService = musicService)
+    ) = MusicRepository(musicDatabase = musicDatabase, context = context, musicService = musicService)
 
     // ------------------ Shared Preferences ------------------
     @Provides

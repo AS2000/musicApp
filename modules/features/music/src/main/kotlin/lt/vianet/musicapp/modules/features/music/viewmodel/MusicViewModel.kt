@@ -96,4 +96,11 @@ class MusicViewModel @Inject constructor(
 
     private fun getMusicCategoryFromMemoryStorage(): MusicCategory? =
         memoryStorage.getMusicCategory()
+
+    // ------------------ Database ------------------
+    fun setMusicItemsToDatabase(musicItems: List<MusicItem>) {
+        viewModelScope.launch(Dispatchers.IO) {
+            musicRepository.setMusicItemsToDatabase(musicItems = musicItems)
+        }
+    }
 }

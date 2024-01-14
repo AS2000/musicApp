@@ -23,4 +23,7 @@ interface MusicItemDao {
         delete()
         addMusicItemEntities(musicItemEntities)
     }
+
+    @Query("SELECT length FROM music WHERE is_downloaded = 1")
+    suspend fun getDownloadedItemsLengths(): List<Int>
 }

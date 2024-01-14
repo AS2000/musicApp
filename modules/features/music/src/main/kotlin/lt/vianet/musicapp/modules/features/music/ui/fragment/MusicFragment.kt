@@ -7,7 +7,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +22,7 @@ import lt.vianet.musicapp.modules.features.music.databinding.FragmentMusicBindin
 import lt.vianet.musicapp.modules.features.music.state.MusicItemsState
 import lt.vianet.musicapp.modules.features.music.ui.adapter.MusicCategoriesAdapter
 import lt.vianet.musicapp.modules.features.music.viewmodel.MusicViewModel
+import lt.vianet.musicapp.modules.features.playlist.state.MelodiesLengthsInFilesystemState
 import lt.vianet.musicapp.modules.features.playlist.state.MusicCategoryState
 import javax.inject.Inject
 
@@ -100,6 +100,21 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
                 }
             }
         }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                with(viewBinding) {
+                    musicViewModel.melodiesLengthInFileSystem.collect { state ->
+                        when (state) {
+                            is MelodiesLengthsInFilesystemState.Success -> {
+                                updateFileSystemMelodyLength(melodiesLengths = state.melodiesLengths)
+                            }
+
+                            else -> {}
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun setupUI() {
@@ -149,15 +164,20 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
             )
         }
 
-        updateMemoryMelodyLength(melodyLength = musicViewModel.getMelodyLengthInMemory())
-        updateFileSystemMelodyLength(melodyLength = musicViewModel.getMelodyLengthInFilesystem())
+        updateMemoryMelodyLength(melodyLength = musicViewModel.getTotalMelodiesLengthsInMemory())
+
+        musicViewModel.getDownloadedItemsLengths()
     }
 
     private fun updateMemoryMelodyLength(melodyLength: Int = 0) {
         viewBinding.memoryUsageViewMemory.setMelodyLength(melodyLength = melodyLength)
     }
 
-    private fun updateFileSystemMelodyLength(melodyLength: Int = 0) {
-        viewBinding.memoryUsageViewFileSystem.setMelodyLength(melodyLength = melodyLength)
+    private fun updateFileSystemMelodyLength(melodiesLengths: List<Int>?) {
+        melodiesLengths ?: return
+
+        val melodiesLength: Int =
+            musicViewModel.getTotalMelodiesLengthsInFilesystem(melodiesLengths = melodiesLengths)
+        viewBinding.memoryUsageViewFileSystem.setMelodyLength(melodyLength = melodiesLength)
     }
 }

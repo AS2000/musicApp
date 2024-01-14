@@ -67,4 +67,13 @@ class MusicRepository @Inject constructor(
             Log.e(TAG, "${exception.message}")
         }
     }
+
+    suspend fun getDownloadedItemsLengths(): List<Int>? {
+        try {
+            return musicDatabase.getMusicItemDao().getDownloadedItemsLengths()
+        } catch (exception: Exception) {
+            Log.e(TAG, "${exception.message}")
+        }
+        return null
+    }
 }

@@ -12,6 +12,7 @@ import lt.vianet.musicapp.modules.data.model.music.MusicItem
 import lt.vianet.musicapp.modules.data.repository.music.MusicRepository
 import lt.vianet.musicapp.modules.data.storage.memoryStorage.MemoryStorage
 import lt.vianet.musicapp.modules.features.music.state.MusicItemsState
+import lt.vianet.musicapp.modules.features.playlist.state.MelodiesLengthsInFilesystemState
 import lt.vianet.musicapp.modules.features.playlist.state.MusicCategoryState
 import javax.inject.Inject
 
@@ -30,6 +31,11 @@ class MusicViewModel @Inject constructor(
     private val _musicCategoryState: MutableStateFlow<MusicCategoryState> =
         MutableStateFlow(MusicCategoryState.Initial)
     val musicCategoryState = _musicCategoryState.asStateFlow()
+
+    /** Melodies Lengths in Filesystem State */
+    private val _melodiesLengthInFileSystem: MutableStateFlow<MelodiesLengthsInFilesystemState> =
+        MutableStateFlow(MelodiesLengthsInFilesystemState.Initial)
+    val melodiesLengthInFileSystem = _melodiesLengthInFileSystem.asStateFlow()
 
     init {
         getMusicCategories()
@@ -56,7 +62,7 @@ class MusicViewModel @Inject constructor(
     fun isLoading(): Boolean =
         _musicCategoriesState.value is MusicItemsState.Loading || _musicCategoryState.value is MusicCategoryState.Loading
 
-    fun getPlaylist() {
+    private fun getPlaylist() {
         _musicCategoryState.value = MusicCategoryState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             val response = musicRepository.getMusicCategory()
@@ -75,15 +81,13 @@ class MusicViewModel @Inject constructor(
         }
     }
 
-    fun getMelodyLengthInMemory(): Int {
+    fun getTotalMelodiesLengthsInMemory(): Int {
         val musicCategory = getMusicCategoryFromMemoryStorage() ?: return 0
         return calculateDownloadedMelodiesLength(musicCategory = musicCategory)
     }
 
-    fun getMelodyLengthInFilesystem(): Int {
-        // TODO SQLite
-        return 3601
-    }
+    fun getTotalMelodiesLengthsInFilesystem(melodiesLengths: List<Int>): Int =
+        melodiesLengths.sumOf { it }
 
     private fun calculateDownloadedMelodiesLength(musicCategory: MusicCategory): Int {
         val musicItems: List<MusicItem> =
@@ -101,6 +105,18 @@ class MusicViewModel @Inject constructor(
     fun setMusicItemsToDatabase(musicItems: List<MusicItem>) {
         viewModelScope.launch(Dispatchers.IO) {
             musicRepository.setMusicItemsToDatabase(musicItems = musicItems)
+        }
+    }
+
+    fun getDownloadedItemsLengths() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = musicRepository.getDownloadedItemsLengths() ?: return@launch
+
+            if (response.isNotEmpty()) {
+                _melodiesLengthInFileSystem.value = MelodiesLengthsInFilesystemState.Success(
+                    melodiesLengths = response,
+                )
+            }
         }
     }
 }

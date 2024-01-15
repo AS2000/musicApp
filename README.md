@@ -1,11 +1,11 @@
-#Music App
-##Homework
+# Music App
+## Homework
 
-##Used technologies:
-**Architecture**: Kotlin, MVVM, one Activity – many Fragments, Multi module, KSP, Hilt/Dagger2 Direct Injection
-**Other**: Jetpack, Lifecycle, StateFlow, Coroutines, Navigation, Retrofit, Room, Shared Preferences, Moshi, ViewBinding, Glide
+## Used technologies:
+** Architecture **: Kotlin, MVVM, one Activity – many Fragments, Multi module, KSP, Hilt/Dagger2 Direct Injection
+** Other **: Jetpack, Lifecycle, StateFlow, Coroutines, Navigation, Retrofit, Room, Shared Preferences, Moshi, ViewBinding, Glide
 
-#Homework requirements
+# Homework requirements
 Tim likes listening to music, he sees all his albums and storage options on the initial page of the app. Tim likes seeing his song lists by categories in separate screens. Also Tim sometimes decides to store his song information either to memory storage or to filesystem storage.
 The category component includes category title and a list of songs and a button to see all songs in the category. Songs within the category have to be horizontally scrollable and be limited to 5 items per category component. The application can render multiple categories with respective songs within. ‘See all’ button should open up a new screen and show all songs in a particular category without any limit.
 

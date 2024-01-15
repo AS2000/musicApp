@@ -6,18 +6,25 @@ import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import lt.vianet.musicapp.modules.common.constant.Navigation
+import lt.vianet.musicapp.modules.common.extension.gone
+import lt.vianet.musicapp.modules.common.extension.visible
 import lt.vianet.musicapp.modules.data.model.enums.CategoryType
 import lt.vianet.musicapp.modules.data.model.enums.PlayListScreenType
 import lt.vianet.musicapp.modules.data.model.music.MusicItem
 import lt.vianet.musicapp.modules.features.playlist.R
 import lt.vianet.musicapp.modules.features.playlist.databinding.FragmentPlaylistBinding
+import lt.vianet.musicapp.modules.features.playlist.state.MusicItemsState
 import lt.vianet.musicapp.modules.features.playlist.ui.adapter.PlaylistAdapter
 import lt.vianet.musicapp.modules.features.playlist.viewmodel.PlaylistViewModel
 
@@ -35,7 +42,6 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
         super.onViewCreated(view, savedInstanceState)
 
         getFragmentArgs()
-        setupListeners()
         setupObservers()
         setupUI()
     }
@@ -58,9 +64,27 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
         }
     }
 
-    private fun setupListeners() {}
+    private fun setupObservers() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                with(viewBinding) {
+                    playlistViewModel.musicItemsState.collect { state ->
+                        when (state) {
+                            is MusicItemsState.Loading -> progressBar.visible()
+                            is MusicItemsState.Success -> {
+                                progressBar.gone()
+                                updateAdapterItems(items = state.musicItems)
+                            }
 
-    private fun setupObservers() {}
+                            is MusicItemsState.Error -> progressBar.gone()
+
+                            else -> {}
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     private fun setupUI() {
         setupTopBar()
@@ -114,16 +138,38 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
     private fun updateAdapter() {
         playlistAdapter.setPlayListScreenType(playListScreenType = playListScreenType)
 
-        getMusicCategoryFromMemoryStorage()
+        when (playListScreenType) {
+            PlayListScreenType.MEMORY -> getMusicCategoryFromMemoryStorage()
+            PlayListScreenType.FILE_SYSTEM -> getMusicItemsFromFilesystemStorage()
+            else -> {}
+        }
     }
 
     private fun onItemSaveClicked(itemId: Int) {
-        playlistViewModel.updateMusicCategory(itemId = itemId)
+        when (playListScreenType) {
+            PlayListScreenType.MEMORY -> {
+                playlistViewModel.updateMusicCategoryInMemoryStorage(itemId = itemId)
+                getMusicCategoryFromMemoryStorage()
+            }
 
-        getMusicCategoryFromMemoryStorage()
+            PlayListScreenType.FILE_SYSTEM -> {
+                playlistViewModel.updateMusicItemInFilesystemStorage(itemId = itemId)
+                getMusicItemsFromFilesystemStorage()
+            }
+
+            else -> {}
+        }
     }
 
     private fun getMusicCategoryFromMemoryStorage() {
-        playlistAdapter.setItems(items = playlistViewModel.getMusicCategoryFromMemoryStorage()?.musicItems as List<MusicItem>)
+        updateAdapterItems(items = playlistViewModel.getMusicCategoryFromMemoryStorage()?.musicItems as List<MusicItem>)
+    }
+
+    private fun getMusicItemsFromFilesystemStorage() {
+        playlistViewModel.getMusicItemsFromFilesystemStorage()
+    }
+
+    private fun updateAdapterItems(items: List<MusicItem>) {
+        playlistAdapter.setItems(items = items)
     }
 }

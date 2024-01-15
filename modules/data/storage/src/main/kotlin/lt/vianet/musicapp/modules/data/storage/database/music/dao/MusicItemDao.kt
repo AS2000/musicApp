@@ -26,4 +26,7 @@ interface MusicItemDao {
 
     @Query("SELECT length FROM music WHERE is_downloaded = 1")
     suspend fun getDownloadedItemsLengths(): List<Int>
+
+    @Query("UPDATE music SET is_downloaded = 1 WHERE itemId = :itemId")
+    suspend fun markAsDownloadedMusicItem(itemId: Int)
 }

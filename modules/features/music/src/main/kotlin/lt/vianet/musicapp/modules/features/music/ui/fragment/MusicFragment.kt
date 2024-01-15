@@ -19,7 +19,7 @@ import lt.vianet.musicapp.modules.data.model.enums.PlayListScreenType
 import lt.vianet.musicapp.modules.data.model.music.MusicCategory
 import lt.vianet.musicapp.modules.features.music.R
 import lt.vianet.musicapp.modules.features.music.databinding.FragmentMusicBinding
-import lt.vianet.musicapp.modules.features.music.state.MusicItemsState
+import lt.vianet.musicapp.modules.features.music.state.MusicCategoriesState
 import lt.vianet.musicapp.modules.features.music.ui.adapter.MusicCategoriesAdapter
 import lt.vianet.musicapp.modules.features.music.viewmodel.MusicViewModel
 import lt.vianet.musicapp.modules.features.playlist.state.MelodiesLengthsInFilesystemState
@@ -59,11 +59,11 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
                 with(viewBinding) {
                     musicViewModel.musicCategoriesState.collect { state ->
                         when (state) {
-                            is MusicItemsState.Loading -> {
+                            is MusicCategoriesState.Loading -> {
                                 swipeRefreshLayoutMusic.isRefreshing = true
                             }
 
-                            is MusicItemsState.Success -> {
+                            is MusicCategoriesState.Success -> {
                                 swipeRefreshLayoutMusic.isRefreshing = false
                                 updateUI(musicCategories = state.musicCategories)
                             }
@@ -103,7 +103,7 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 with(viewBinding) {
-                    musicViewModel.melodiesLengthInFileSystem.collect { state ->
+                    musicViewModel.melodiesLengthInFileSystemState.collect { state ->
                         when (state) {
                             is MelodiesLengthsInFilesystemState.Success -> {
                                 updateFileSystemMelodyLength(melodiesLengths = state.melodiesLengths)

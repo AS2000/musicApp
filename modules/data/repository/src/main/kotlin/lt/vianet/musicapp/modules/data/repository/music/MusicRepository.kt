@@ -76,4 +76,24 @@ class MusicRepository @Inject constructor(
         }
         return null
     }
+
+    suspend fun getAllMusicItems(): List<MusicItem>? {
+        try {
+            val musicItemEntities: List<MusicItemEntity> =
+                musicDatabase.getMusicItemDao().getMusicItemEntities()
+
+            return MusicItemEntityMapper.mapToMusicItem(musicItemEntities = musicItemEntities)
+        } catch (exception: Exception) {
+            Log.e(TAG, "${exception.message}")
+        }
+        return null
+    }
+
+    suspend fun updateMusicItem(itemId: Int) {
+        try {
+            musicDatabase.getMusicItemDao().markAsDownloadedMusicItem(itemId = itemId)
+        } catch (exception: Exception) {
+            Log.e(TAG, "${exception.message}")
+        }
+    }
 }

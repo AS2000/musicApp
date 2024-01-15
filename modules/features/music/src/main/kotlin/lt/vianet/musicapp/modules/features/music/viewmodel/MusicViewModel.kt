@@ -37,9 +37,11 @@ class MusicViewModel @Inject constructor(
         MutableStateFlow(MelodiesLengthsInFilesystemState.Initial)
     val melodiesLengthInFileSystemState = _melodiesLengthInFileSystemState.asStateFlow()
 
+    var wasFetchedMusicCategory = false
+
     init {
         getMusicCategories()
-        getPlaylist()
+        getMusicCategory()
     }
 
     fun getMusicCategories() {
@@ -52,6 +54,9 @@ class MusicViewModel @Inject constructor(
                     musicCategories = response?.data?.musicCategories as MutableList<MusicCategory>,
                 )
 
+                // TODO find out why MutableStateFlow triggers everytime onResume
+                wasFetchedMusicCategory = true
+
                 return@launch
             }
 
@@ -62,7 +67,7 @@ class MusicViewModel @Inject constructor(
     fun isLoading(): Boolean =
         _musicCategoriesState.value is MusicCategoriesState.Loading || _musicCategoryState.value is MusicCategoryState.Loading
 
-    private fun getPlaylist() {
+    private fun getMusicCategory() {
         _musicCategoryState.value = MusicCategoryState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             val response = musicRepository.getMusicCategory()
@@ -71,8 +76,6 @@ class MusicViewModel @Inject constructor(
                 _musicCategoryState.value = MusicCategoryState.Success(
                     musicCategory = response.data?.musicCategory as MusicCategory,
                 )
-
-                memoryStorage.setMusicCategory(musicCategory = response.data?.musicCategory)
 
                 return@launch
             }
@@ -96,6 +99,10 @@ class MusicViewModel @Inject constructor(
         if (musicItems.isEmpty()) return 0
 
         return musicItems.sumOf { it.length!! }
+    }
+
+    fun setMusicCategoryToMemoryStorage(musicCategory: MusicCategory) {
+        memoryStorage.setMusicCategory(musicCategory = musicCategory)
     }
 
     private fun getMusicCategoryFromMemoryStorage(): MusicCategory? =

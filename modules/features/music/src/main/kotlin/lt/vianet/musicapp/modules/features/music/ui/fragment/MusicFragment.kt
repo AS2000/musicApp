@@ -46,18 +46,21 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupListeners()
         setupObservers()
         setupUI()
     }
 
-    private fun setupListeners() {}
+    override fun onResume() {
+        super.onResume()
+
+        updateStoredMelodyLengths()
+    }
 
     private fun setupObservers() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                with(viewBinding) {
-                    musicViewModel.musicCategoriesState.collect { state ->
+                musicViewModel.musicCategoriesState.collect { state ->
+                    with(viewBinding) {
                         when (state) {
                             is MusicCategoriesState.Loading -> {
                                 swipeRefreshLayoutMusic.isRefreshing = true
@@ -65,7 +68,7 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
 
                             is MusicCategoriesState.Success -> {
                                 swipeRefreshLayoutMusic.isRefreshing = false
-                                updateUI(musicCategories = state.musicCategories)
+                                updateMusicCategoriesAdapter(musicCategories = state.musicCategories)
                             }
 
                             else -> {
@@ -88,8 +91,13 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
                             is MusicCategoryState.Success -> {
                                 swipeRefreshLayoutMusic.isRefreshing = false
 
-                                val musicItems = state.musicCategory.musicItems ?: return@collect
-                                musicViewModel.setMusicItemsToDatabase(musicItems = musicItems)
+                                if (!musicViewModel.wasFetchedMusicCategory) {
+                                    musicViewModel.setMusicCategoryToMemoryStorage(musicCategory = state.musicCategory)
+
+                                    val musicItems =
+                                        state.musicCategory.musicItems ?: return@collect
+                                    musicViewModel.setMusicItemsToDatabase(musicItems = musicItems)
+                                }
                             }
 
                             else -> {
@@ -106,7 +114,7 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
                     musicViewModel.melodiesLengthInFileSystemState.collect { state ->
                         when (state) {
                             is MelodiesLengthsInFilesystemState.Success -> {
-                                updateFileSystemMelodyLength(melodiesLengths = state.melodiesLengths)
+                                updateStoredInFileSystemMelodyLength(melodiesLengths = state.melodiesLengths)
                             }
 
                             else -> {}
@@ -137,10 +145,6 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
                 itemAnimator = DefaultItemAnimator()
             }
         }
-    }
-
-    private fun updateUI(musicCategories: List<MusicCategory>) {
-        musicCategoriesAdapter.setItems(items = musicCategories)
 
         with(viewBinding) {
             memoryUsageViewMemory.setupNavigator(
@@ -163,17 +167,22 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
                 },
             )
         }
+    }
 
-        updateMemoryMelodyLength(melodyLength = musicViewModel.getTotalMelodiesLengthsInMemory())
+    private fun updateMusicCategoriesAdapter(musicCategories: List<MusicCategory>) {
+        musicCategoriesAdapter.setItems(items = musicCategories)
+    }
 
+    private fun updateStoredMelodyLengths() {
+        updateStoredInMemoryMelodyLength(melodyLength = musicViewModel.getTotalMelodiesLengthsInMemory())
         musicViewModel.getDownloadedItemsLengths()
     }
 
-    private fun updateMemoryMelodyLength(melodyLength: Int = 0) {
+    private fun updateStoredInMemoryMelodyLength(melodyLength: Int = 0) {
         viewBinding.memoryUsageViewMemory.setMelodyLength(melodyLength = melodyLength)
     }
 
-    private fun updateFileSystemMelodyLength(melodiesLengths: List<Int>?) {
+    private fun updateStoredInFileSystemMelodyLength(melodiesLengths: List<Int>?) {
         melodiesLengths ?: return
 
         val melodiesLength: Int =

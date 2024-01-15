@@ -33,12 +33,6 @@ class MusicRepository @Inject constructor(
 
     suspend fun getMusicCategory(queryMap: Map<String, String?>? = null): MusicCategoryResponse? {
         try {
-            val musicItemEntities: List<MusicItemEntity> =
-                musicDatabase.getMusicItemDao().getMusicItemEntities()
-
-            var musicItems: List<MusicItem>? =
-                MusicItemEntityMapper.mapToMusicItem(musicItemEntities = musicItemEntities)
-
             if (categoryResponse == null) {
 //                categoryResponse = musicService.getMusicCategory(queryMap)
 

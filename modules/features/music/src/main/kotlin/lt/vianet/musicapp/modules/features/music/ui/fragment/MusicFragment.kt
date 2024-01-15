@@ -97,6 +97,9 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
                                     val musicItems =
                                         state.musicCategory.musicItems ?: return@collect
                                     musicViewModel.setMusicItemsToDatabase(musicItems = musicItems)
+
+                                    // TODO find out why MutableStateFlow triggers everytime onResume
+                                    musicViewModel.wasFetchedMusicCategory = true
                                 }
                             }
 
@@ -110,15 +113,13 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
         }
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                with(viewBinding) {
-                    musicViewModel.melodiesLengthInFileSystemState.collect { state ->
-                        when (state) {
-                            is MelodiesLengthsInFilesystemState.Success -> {
-                                updateStoredInFileSystemMelodyLength(melodiesLengths = state.melodiesLengths)
-                            }
-
-                            else -> {}
+                musicViewModel.melodiesLengthInFileSystemState.collect { state ->
+                    when (state) {
+                        is MelodiesLengthsInFilesystemState.Success -> {
+                            updateStoredInFileSystemMelodyLength(melodiesLengths = state.melodiesLengths)
                         }
+
+                        else -> {}
                     }
                 }
             }
@@ -175,7 +176,7 @@ class MusicFragment : Fragment(R.layout.fragment_music) {
 
     private fun updateStoredMelodyLengths() {
         updateStoredInMemoryMelodyLength(melodyLength = musicViewModel.getTotalMelodiesLengthsInMemory())
-        musicViewModel.getDownloadedItemsLengths()
+        musicViewModel.getTotalMelodiesLengthInFilesystem()
     }
 
     private fun updateStoredInMemoryMelodyLength(melodyLength: Int = 0) {

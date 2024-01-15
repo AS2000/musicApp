@@ -141,7 +141,7 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
         when (playListScreenType) {
             PlayListScreenType.MEMORY -> getMusicCategoryFromMemoryStorage()
             PlayListScreenType.FILE_SYSTEM -> getMusicItemsFromFilesystemStorage()
-            else -> {}
+            else -> getMusicCategoryFromMemoryStorage()
         }
     }
 
@@ -162,7 +162,9 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
     }
 
     private fun getMusicCategoryFromMemoryStorage() {
-        updateAdapterItems(items = playlistViewModel.getMusicCategoryFromMemoryStorage()?.musicItems as List<MusicItem>)
+        val musicItems: List<MusicItem> =
+            playlistViewModel.getMusicCategoryFromMemoryStorage()?.musicItems ?: return
+        updateAdapterItems(items = musicItems)
     }
 
     private fun getMusicItemsFromFilesystemStorage() {

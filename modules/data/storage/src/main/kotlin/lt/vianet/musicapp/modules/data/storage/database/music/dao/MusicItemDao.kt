@@ -29,4 +29,7 @@ interface MusicItemDao {
 
     @Query("UPDATE music SET is_downloaded = 1 WHERE itemId = :itemId")
     suspend fun markAsDownloadedMusicItem(itemId: Int)
+
+    @Query("SELECT count(*) FROM music")
+    suspend fun checkHasDatabaseData(): Int
 }

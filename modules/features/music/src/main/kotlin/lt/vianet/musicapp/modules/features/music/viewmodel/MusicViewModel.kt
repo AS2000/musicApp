@@ -54,9 +54,6 @@ class MusicViewModel @Inject constructor(
                     musicCategories = response?.data?.musicCategories as MutableList<MusicCategory>,
                 )
 
-                // TODO find out why MutableStateFlow triggers everytime onResume
-                wasFetchedMusicCategory = true
-
                 return@launch
             }
 
@@ -115,7 +112,7 @@ class MusicViewModel @Inject constructor(
         }
     }
 
-    fun getDownloadedItemsLengths() {
+    fun getTotalMelodiesLengthInFilesystem() {
         viewModelScope.launch(Dispatchers.IO) {
             val response = musicRepository.getDownloadedItemsLengths() ?: return@launch
 

@@ -9,6 +9,7 @@
         android:id="@+id/viewPlaylistTitleLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:paddingVertical="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/viewMemoryIconLayout"
         app:layout_constraintStart_toStartOf="parent"

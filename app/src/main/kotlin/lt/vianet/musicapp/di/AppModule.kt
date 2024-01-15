@@ -1,12 +1,14 @@
 package lt.vianet.musicapp.di
 
 import android.content.Context
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import lt.vianet.musicapp.Config
+import lt.vianet.musicapp.AppConfig
 import lt.vianet.musicapp.modules.data.network.service.MusicService
 import lt.vianet.musicapp.modules.data.repository.music.MusicRepository
 import lt.vianet.musicapp.modules.data.storage.database.music.MusicDatabase
@@ -41,7 +43,7 @@ object AppModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl(Config.urlApi)
+            .baseUrl(AppConfig.urlApi)
             .addConverterFactory(MoshiConverterFactory.create())
             .client(okHttpClient)
             .build()
@@ -59,7 +61,11 @@ object AppModule {
         musicDatabase: MusicDatabase,
         @ApplicationContext context: Context,
         musicService: MusicService,
-    ) = MusicRepository(musicDatabase = musicDatabase, context = context, musicService = musicService)
+    ) = MusicRepository(
+        musicDatabase = musicDatabase,
+        context = context,
+        musicService = musicService,
+    )
 
     // ------------------ Shared Preferences ------------------
     @Provides
@@ -67,4 +73,9 @@ object AppModule {
     fun providesMemoryStorage(
         @ApplicationContext context: Context,
     ) = MemoryStorage(context = context)
+
+    // ------------------ Glide ------------------
+    @Provides
+    @Singleton
+    fun provideGlide(@ApplicationContext context: Context): RequestManager = Glide.with(context)
 }

@@ -96,7 +96,7 @@ dependencies {
     implementation(Dependencies.loggingInterceptor)
 
     // Glide
-//    implementation(Dependencies.glide)
+    implementation(Dependencies.glide)
     ksp(Dependencies.glideAnnotationProcessor)
 
     // Tests

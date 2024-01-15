@@ -61,6 +61,7 @@ dependencies {
     ksp(Dependencies.hiltCompiler)
 
     // Glide
+    implementation(Dependencies.glide)
     ksp(Dependencies.glideAnnotationProcessor)
 
     // Tests

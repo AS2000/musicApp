@@ -110,6 +110,7 @@ object Dependencies {
 
     // Glide
     private const val glideVersion = "4.16.0"
+    const val glide = "com.github.bumptech.glide:glide:$glideVersion"
     const val glideAnnotationProcessor = "com.github.bumptech.glide:ksp:$glideVersion"
 
     // Tests
